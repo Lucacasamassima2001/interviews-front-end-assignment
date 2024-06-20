@@ -6,7 +6,6 @@ import Title from "../UI/titles/title";
 import Flex from "../UI/Flex/Flex";
 import { RecipeItem } from "../components/Recipe/recipe";
 import Button from "../UI/Button/button";
-import { AddRecipe } from "./AddRecipe";
 
 export const Homepage = () => {
   const [recipes, setRecipes] = useState([]);
