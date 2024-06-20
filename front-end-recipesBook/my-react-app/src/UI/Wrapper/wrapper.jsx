@@ -4,6 +4,9 @@ const Wrapper = styled.div`
   height: ${(props) => props.height || "100%"};
   background-color: ${(props) => props.background || "white"};
   padding: ${(props) => props.padding || "20px"};
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: ${(props) => props.backgroundImage || "none"};
 `;
 
 export default Wrapper;

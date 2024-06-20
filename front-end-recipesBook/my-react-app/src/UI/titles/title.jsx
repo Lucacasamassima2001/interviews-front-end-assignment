@@ -7,6 +7,7 @@ const Title = styled.h1`
   text-align: ${(props) => (props.aligntext ? props.aligntext : "left")};
   font-weight: ${(props) => props.fontWeight || "normal"};
   font-family: ${(props) => props.fontFamily || "sans-serif"};
+  font-style: ${(props) => props.fontStyle || "normal"};
 `;
 
 export default Title;
