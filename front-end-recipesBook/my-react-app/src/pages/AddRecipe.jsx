@@ -128,7 +128,7 @@ export const AddRecipe = () => {
       });
   };
   return (
-    <Wrapper>
+    <Wrapper background="#E7D4B5" height="100vh">
       <GoBackButton />
 
       <Flex padding="10px" gap="50px" direction="row">

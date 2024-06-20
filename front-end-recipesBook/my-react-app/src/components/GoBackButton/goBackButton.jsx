@@ -8,7 +8,7 @@ export const GoBackButton = () => {
 
   return (
     <Button onClick={onGoBack}>
-      <i className="fa-solid fa-arrow-left"></i>
+      <i style={{ color: "#74512d" }} className="fa-solid fa-arrow-left"></i>
     </Button>
   );
 };

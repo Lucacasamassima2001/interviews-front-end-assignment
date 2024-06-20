@@ -10,17 +10,12 @@ import Title from "../../UI/titles/title";
 export const RecipeItem = ({ recipe }) => {
   return (
     <>
-      <Flex
-        radius="10px"
-        width="900px"
-        border="3px solid black"
-        direction="row"
-      >
+      <Flex position="relative" radius="10px" width="900px" direction="row">
         <Flex>
           <Image
             radius="10px"
-            width="400px"
-            height="400px"
+            width="500px"
+            height="450px"
             src={`/server${recipe.image}`}
           />
         </Flex>
@@ -31,7 +26,9 @@ export const RecipeItem = ({ recipe }) => {
           gap="10px"
           padding="10px"
         >
-          <Title fontSize="20px">{recipe.name}</Title>
+          <Title fontWeight="bold" fontSize="25px">
+            {recipe.name}
+          </Title>
           <Paragraph>{recipe.instructions}</Paragraph>
           <List liststyle="circle" direction="column" gap="10px">
             {recipe.ingredients.map((ingredient) => (
@@ -40,6 +37,8 @@ export const RecipeItem = ({ recipe }) => {
           </List>
           <Flex justify="center">
             <LinkButton
+              position="absolute"
+              bottom="0px"
               width="150px"
               to={`/recipe/${recipe.id}`}
               state={{ data: recipe }}

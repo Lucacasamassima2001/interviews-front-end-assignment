@@ -13,12 +13,17 @@ const LinkButton = styled(Link)`
   text-decoration: none;
   border: ${(props) => props.border || "none"};
   padding: ${(props) => props.padding || "0"};
+  position: ${(props) => props.position || "none"};
+  top: ${(props) => props.top || "none"};
+  left: ${(props) => props.left || "none"};
+  right: ${(props) => props.right || "none"};
+  bottom: ${(props) => props.bottom || "none"};
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.3s ease-in-out;
   &:hover {
-    background-color: black;
+    background-color: #74512d;
     color: white;
   }
 `;
