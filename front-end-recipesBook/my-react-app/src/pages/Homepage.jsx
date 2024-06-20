@@ -6,6 +6,7 @@ import Title from "../UI/titles/title";
 import Flex from "../UI/Flex/Flex";
 import { RecipeItem } from "../components/Recipe/recipe";
 import Button from "../UI/Button/button";
+import Image from "../UI/image/Image";
 
 export const Homepage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -75,8 +76,17 @@ export const Homepage = () => {
   };
 
   return (
-    <Wrapper>
-      <Title fontSize="50px">RecipeBook</Title>
+    <Wrapper background="#E7D4B5">
+      <Flex
+        padding="20px"
+        align="center"
+        justify="space-between"
+        height="100px"
+        gap="20px"
+      >
+        <Title fontSize="50px">RecipeBook</Title>
+        <Image radius="50%" src="/cook.jpg" height={"100%"} />
+      </Flex>
       <Navbar />
       <Filters
         setRecipes={setFiltered}
@@ -84,17 +94,28 @@ export const Homepage = () => {
         difficulties={difficulties}
         diets={diets}
       />
-
-      <Title fontSize="30px">
-        Check out the latest recipes from our Community!
-      </Title>
-      <Flex justify="center" direction="row" gap="100px" wrap="wrap">
-        {recipes
-          ? recipes.map((recipe) => (
-              <RecipeItem recipe={recipe} key={recipe.id} />
-            ))
-          : ""}
+      <Flex>
+        <Flex
+          radius="10px"
+          padding="10px"
+          background="#F6E6CB"
+          width="80%"
+          direction="column"
+        >
+          <Title fontSize="30px">
+            Check out the latest recipes from our Community!
+          </Title>
+          <Flex direction="row" gap="100px" wrap="wrap">
+            {recipes
+              ? recipes.map((recipe) => (
+                  <RecipeItem recipe={recipe} key={recipe.id} />
+                ))
+              : ""}
+          </Flex>
+        </Flex>
+        <Flex width="20%"></Flex>
       </Flex>
+
       <Flex padding="10px" justify="center">
         {/* to fix on pageEnd */}
         {recipesPage !== 3 && (

@@ -69,7 +69,7 @@ export const RecipeDetails = () => {
 
   return (
     <>
-      <Wrapper width="100%" height="100%">
+      <Wrapper width="100%" height="100%" background="#E7D4B5">
         <GoBackButton />
         <Flex direction="column" gap="10px" align="center">
           <Title width="100%" aligntext="center">

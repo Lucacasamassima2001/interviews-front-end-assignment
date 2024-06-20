@@ -58,6 +58,8 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
   };
 
   const resetFilters = async () => {
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((input) => (input.value = ""));
     const response = await fetch("http://localhost:8080/recipes");
     const data = await response.json();
     setRecipes(data);
@@ -85,7 +87,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
             <Input
               name="name"
               onChange={handleFiltersChange}
-              width="200px"
+              width="300px"
               height="40px"
               fontSize="20px"
             />
@@ -164,7 +166,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
           </Flex>
         </Flex>
       )}
-      <Flex gap="5px" align="baseline">
+      <Flex margin="40px 0 0 0" gap="5px" align="baseline">
         <Title fontSize="20px">Filter Recipes</Title>
         <Button
           width="40px"
@@ -173,9 +175,15 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
           onClick={() => setShowFilters(!showFilters)}
         >
           {showFilters ? (
-            <i className="fa-solid fa-arrow-up"></i>
+            <i
+              style={{ color: "#74512d" }}
+              className="fa-solid fa-arrow-up"
+            ></i>
           ) : (
-            <i className="fa-solid fa-arrow-down"></i>
+            <i
+              style={{ color: "#74512d" }}
+              className="fa-solid fa-arrow-down"
+            ></i>
           )}
         </Button>
       </Flex>

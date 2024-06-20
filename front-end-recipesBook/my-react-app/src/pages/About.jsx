@@ -7,7 +7,7 @@ import { GoBackButton } from "../components/GoBackButton/goBackButton";
 
 export const About = () => {
   return (
-    <Wrapper padding="10px 0 0 0">
+    <Wrapper height="100vh" background="#E7D4B5" padding="10px 0 0 0">
       <GoBackButton />
       <Flex direction="column" align="center">
         <Title fontStyle="italic" aligntext="center">

@@ -7,9 +7,8 @@ import Wrapper from "../UI/Wrapper/wrapper";
 function App() {
   return (
     <>
-      <Wrapper background="white">
+      <Wrapper height="100vh" background="#E7D4B5">
         <Flex
-          margin="200px 0 0 0"
           width="100%"
           height="100%"
           direction="row"
@@ -35,7 +34,6 @@ function App() {
               margin="20px"
               textsize="18px"
               padding="2px"
-              border="2px solid black"
               to="/Homepage"
             >
               Get started
