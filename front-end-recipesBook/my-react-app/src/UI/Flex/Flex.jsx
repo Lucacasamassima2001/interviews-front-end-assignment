@@ -12,7 +12,8 @@ const Flex = styled.div`
   flex-wrap: ${(props) => props.wrap || "nowrap"};
   border: ${(props) => props.border || "none"};
   border-radius: ${(props) => props.radius || "none"};
-  background-color: ${(props) => props.backgroundColor || "none"};
+  background-color: ${(props) => props.background || "none"};
+  margin: ${(props) => props.margin || "none"};
 `;
 
 export default Flex;

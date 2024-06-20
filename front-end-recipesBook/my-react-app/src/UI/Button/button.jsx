@@ -13,6 +13,10 @@ const Button = styled.button`
   align-items: center;
   border: ${(props) => props.border || "none"};
   padding: ${(props) => props.padding || "0"};
+  &:hover {
+    background-color: ${(props) => props.hoverColor || "none"};
+    color: ${(props) => props.hoverTextColor || "none"};
+  }
 `;
 
 export default Button;

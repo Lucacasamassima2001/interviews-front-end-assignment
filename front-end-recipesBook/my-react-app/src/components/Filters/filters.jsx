@@ -79,8 +79,8 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
           height="500px"
           direction="column"
         >
-          <Title fontSize="20px">Filters</Title>
-          <Flex align="baseline" gap="10px">
+          <Title fontSize="30px">Filters</Title>
+          <Flex direction="column" align="baseline" gap="10px">
             <Label>Search by name:</Label>
             <Input
               name="name"
@@ -91,15 +91,15 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
             />
           </Flex>
           <Flex direction="column">
-            <Label>Cuisine:</Label>
-            <Flex>
+            <Label>Cuisines:</Label>
+            <Flex width="600px" wrap="wrap">
               {cousines.map((cousine) => (
                 <Button
                   name="cousine"
                   value={cousine.id}
                   onClick={handleFiltersChange}
                   key={cousine.id}
-                  width="100px"
+                  width="150px"
                   height="40px"
                   fontSize="20px"
                 >
@@ -121,7 +121,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                   height="40px"
                   fontSize="20px"
                 >
-                  {difficulty.id}
+                  {difficulty.name}
                 </Button>
               ))}
             </Flex>
@@ -144,25 +144,27 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
               ))}
             </Flex>
           </Flex>
-          <Button
-            onClick={() => searchFilteredRecipes()}
-            width="100px"
-            height="40px"
-            fontSize="20px"
-          >
-            Search
-          </Button>
-          <Button
-            onClick={() => resetFilters()}
-            width="100px"
-            height="40px"
-            fontSize="20px"
-          >
-            Clear Filters
-          </Button>
+          <Flex gap="10px" alig="baseline" justify="center">
+            <Button
+              onClick={() => searchFilteredRecipes()}
+              width="150px"
+              height="40px"
+              fontSize="20px"
+            >
+              Search
+            </Button>
+            <Button
+              onClick={() => resetFilters()}
+              width="150px"
+              height="40px"
+              fontSize="20px"
+            >
+              Clear Filters
+            </Button>
+          </Flex>
         </Flex>
       )}
-      <Flex gap="5px" alig="baseline">
+      <Flex gap="5px" align="baseline">
         <Title fontSize="20px">Filter Recipes</Title>
         <Button
           width="40px"

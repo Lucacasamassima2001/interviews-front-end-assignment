@@ -22,6 +22,10 @@ const router = createBrowserRouter([
     path: "/recipe/:recipeId",
     element: <RecipeDetails />,
   },
+  {
+    path: "/create-recipe",
+    element: <AddRecipe />,
+  },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

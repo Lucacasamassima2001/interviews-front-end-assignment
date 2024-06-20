@@ -77,6 +77,7 @@ export const Homepage = () => {
 
   return (
     <Wrapper>
+      <Title fontSize="50px">RecipeBook</Title>
       <Navbar />
       <Filters
         setRecipes={setFiltered}
@@ -84,11 +85,7 @@ export const Homepage = () => {
         difficulties={difficulties}
         diets={diets}
       />
-      <AddRecipe
-        cousines={cousines}
-        difficulties={difficulties}
-        diets={diets}
-      />
+
       <Title fontSize="30px">
         Check out the latest recipes from our Community!
       </Title>

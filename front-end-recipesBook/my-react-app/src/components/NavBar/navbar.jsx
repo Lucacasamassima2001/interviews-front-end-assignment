@@ -4,10 +4,19 @@ import Flex from "../../UI/Flex/Flex";
 export const Navbar = () => {
   return (
     <>
-      <Flex justify="left" gap="10px">
-        <LinkButton to="/">Welcome</LinkButton>
-        <LinkButton to="/Homepage">Homepage</LinkButton>
-        <LinkButton to="/about">About</LinkButton>
+      <Flex justify="center" gap="100px">
+        <LinkButton width="250px" textsize="30px" to="/">
+          Welcome
+        </LinkButton>
+        <LinkButton width="250px" textsize="30px" to="/Homepage">
+          Homepage
+        </LinkButton>
+        <LinkButton width="250px" textsize="30px" to="/about">
+          About
+        </LinkButton>
+        <LinkButton width="250px" textsize="30px" to="/create-recipe">
+          Add you recipe
+        </LinkButton>
       </Flex>
     </>
   );
