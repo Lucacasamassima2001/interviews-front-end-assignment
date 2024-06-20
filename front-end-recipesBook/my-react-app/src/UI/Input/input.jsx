@@ -7,7 +7,6 @@ const Input = styled.input`
   background-color: ${(props) => props.backgroundColor || "lightgrey"};
   color: ${(props) => props.color || "black"};
   font-size: ${(props) => props.fontSize || "15px"};
-  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
