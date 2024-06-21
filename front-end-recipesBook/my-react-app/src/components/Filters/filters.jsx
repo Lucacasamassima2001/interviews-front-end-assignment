@@ -15,7 +15,6 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
     difficulty: "",
     diet: "",
   });
-  console.log(searchData);
 
   const handleFiltersChange = (e) => {
     setSearchData({ ...searchData, [e.target.name]: e.target.value });
