@@ -19,7 +19,7 @@ export const Review = ({ review }) => {
   return (
     <Flex
       width="300px"
-      height="130px"
+      height="150px"
       border="1px solid black"
       radius="10px"
       direction="column"

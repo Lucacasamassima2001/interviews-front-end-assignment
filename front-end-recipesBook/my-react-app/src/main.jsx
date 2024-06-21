@@ -6,6 +6,7 @@ import { Homepage } from "./pages/Homepage";
 import { AddRecipe } from "./pages/AddRecipe";
 import { RecipeDetails } from "./pages/RecipeDetails";
 import { About } from "./pages/About";
+import { Error404Page } from "./pages/Error404Page";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: "/about",
     element: <About />,
+  },
+  {
+    path: "*",
+    element: <Error404Page />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(

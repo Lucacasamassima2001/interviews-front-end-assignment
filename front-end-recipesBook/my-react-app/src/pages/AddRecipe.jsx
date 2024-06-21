@@ -28,7 +28,6 @@ export const AddRecipe = () => {
     isActive: false,
   });
   const imgRef = useRef(null);
-  console.log(recipeData);
   useEffect(() => {
     // fetch cousines
     fetch("http://localhost:8080/cuisines")
@@ -174,6 +173,7 @@ export const AddRecipe = () => {
                 <Flex>
                   {cousines.map((cousine) => (
                     <Button
+                      selected={recipeData.cuisineId === cousine.id}
                       name="cuisineId"
                       value={cousine.id}
                       onClick={handleRecipeChange}
@@ -193,6 +193,7 @@ export const AddRecipe = () => {
                 <Flex>
                   {difficulties.map((difficulty) => (
                     <Button
+                      selected={recipeData.difficultyId === difficulty.id}
                       name="difficultyId"
                       value={difficulty.id}
                       onClick={handleRecipeChange}
@@ -212,6 +213,7 @@ export const AddRecipe = () => {
                 <Flex>
                   {diets.map((diet) => (
                     <Button
+                      selected={recipeData.dietId === diet.id}
                       name="dietId"
                       value={diet.id}
                       onClick={handleRecipeChange}
