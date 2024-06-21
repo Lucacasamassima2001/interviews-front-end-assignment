@@ -149,6 +149,7 @@ export const AddRecipe = () => {
                   name="name"
                   type="text"
                   value={recipeData.name}
+                  placeholder="Your Recipe name..."
                 />
               </Flex>
               <Flex direction="column" align="baseline" gap="10px">
@@ -165,6 +166,7 @@ export const AddRecipe = () => {
                   name="instructions"
                   type="textarea"
                   value={recipeData.instructions}
+                  placeholder="Your Recipe instructions..."
                 />
               </Flex>
               <Flex direction="column">

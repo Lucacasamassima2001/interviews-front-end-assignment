@@ -4,7 +4,8 @@ const Button = styled.button`
   width: ${(props) => props.width || "100px"};
   height: ${(props) => props.height || "40px"};
   border-radius: ${(props) => props.borderRadius || "10px"};
-  background-color: ${(props) => props.bgColor || "transparent"};
+  background-color: ${(props) =>
+    props.bgColor || props.selected ? "#74512d" : "transparent"};
   color: ${(props) => props.color || "black"};
   font-size: ${(props) => props.fontSize || "20px"};
   cursor: pointer;

@@ -11,13 +11,15 @@ import Image from "../UI/image/Image";
 export const Homepage = () => {
   const [recipes, setRecipes] = useState([]);
   const [recipesPage, setRecipesPage] = useState(1);
+  // todo: add pagination
+  // eslint-disable-next-line no-unused-vars
   const [recipesPerPage, setRecipesPerPage] = useState(10);
   const [cousines, setCousines] = useState([]);
   const [difficulties, setDifficulties] = useState([]);
   const [diets, setDiets] = useState([]);
-  // const totalPages = Math.ceil(recipes.length / recipesPerPage);
-  // const startIndex = (recipesPage - 1) * recipesPerPage;
-  // const endIndex = startIndex + recipesPerPage;
+  let totalPages = Math.ceil(recipes.length / recipesPerPage);
+  const startIndex = (recipesPage - 1) * recipesPerPage;
+  const endIndex = startIndex + recipesPerPage;
 
   useEffect(() => {
     // fetch cousines
@@ -49,9 +51,7 @@ export const Homepage = () => {
       .catch((error) => {
         console.error(error);
       });
-    fetch(
-      `http://localhost:8080/recipes?_page=${recipesPage}&_limit=${recipesPerPage}`
-    )
+    fetch(`http://localhost:8080/recipes`)
       .then((response) => response.json())
       .then((data) => {
         const recipes = data;
@@ -62,15 +62,6 @@ export const Homepage = () => {
       });
   }, [recipesPage, recipesPerPage]);
 
-  const onLoadMore = async () => {
-    setRecipesPage((prevPage) => prevPage + 1);
-    const response = await fetch(
-      `http://localhost:8080/recipes?_page=${recipesPage}&_limit=${recipesPerPage}`
-    );
-
-    const data = await response.json();
-    setRecipes([...recipes, ...data]);
-  };
   const setFiltered = (recipes) => {
     setRecipes(recipes);
   };
@@ -84,7 +75,7 @@ export const Homepage = () => {
         height="100px"
         gap="20px"
       >
-        <Title fontSize="50px">RecipeBook</Title>
+        <Title fontSize="50px">RecipesBook</Title>
         <Image radius="50%" src="/cook.jpg" height={"100%"} />
       </Flex>
       <Navbar />
@@ -101,16 +92,15 @@ export const Homepage = () => {
           background="#F6E6CB"
           width="80%"
           direction="column"
+          height="100%"
         >
           <Title fontSize="30px">
             Check out the latest recipes from our Community!
           </Title>
           <Flex direction="row" gap="100px" wrap="wrap">
-            {recipes
-              ? recipes.map((recipe) => (
-                  <RecipeItem recipe={recipe} key={recipe.id} />
-                ))
-              : ""}
+            {recipes.slice(startIndex, endIndex).map((recipe) => (
+              <RecipeItem key={recipe.id} recipe={recipe} />
+            ))}
           </Flex>
         </Flex>
         <Flex width="20%"></Flex>
@@ -118,11 +108,27 @@ export const Homepage = () => {
 
       <Flex padding="10px" justify="center">
         {/* to fix on pageEnd */}
-        {recipesPage !== 3 && (
+        {/* {recipesPage !== 3 && (
           <Button fontSize="15px" padding="10px" onClick={onLoadMore}>
             Load More
           </Button>
-        )}
+        )} */}
+        {
+          (totalPages = new Array(totalPages).fill(null).map((_, index) => (
+            <Button
+              width="30px"
+              height="30px"
+              radius="50%"
+              selected={recipesPage === index + 1}
+              key={index}
+              fontSize="15px"
+              padding="5px"
+              onClick={() => setRecipesPage(index + 1)}
+            >
+              {index + 1}
+            </Button>
+          )))
+        }
       </Flex>
     </Wrapper>
   );
