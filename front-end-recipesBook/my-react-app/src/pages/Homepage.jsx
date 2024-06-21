@@ -13,10 +13,8 @@ export const Homepage = () => {
   const [recipes, setRecipes] = useState([]);
   const [recipesPage, setRecipesPage] = useState(1);
   // eslint-disable-next-line no-unused-vars
-  const [recipesPerPage, setRecipesPerPage] = useState(10);
-  const [cousines, setCousines] = useState([]);
-  const [difficulties, setDifficulties] = useState([]);
-  const [diets, setDiets] = useState([]);
+  const [recipesDetails, setRecipesDetails] = useState({});
+  const recipesPerPage = 10;
   let totalPages = Math.ceil(recipes.length / recipesPerPage);
   const startIndex = (recipesPage - 1) * recipesPerPage;
   const endIndex = startIndex + recipesPerPage;
@@ -25,7 +23,7 @@ export const Homepage = () => {
     fetch("http://localhost:8080/cuisines")
       .then((response) => response.json())
       .then((data) => {
-        setCousines(data);
+        setRecipesDetails((prev) => ({ ...prev, cuisines: data }));
       })
       .catch((error) => {
         console.error(error);
@@ -35,7 +33,7 @@ export const Homepage = () => {
     fetch("http://localhost:8080/difficulties")
       .then((response) => response.json())
       .then((data) => {
-        setDifficulties(data);
+        setRecipesDetails((prev) => ({ ...prev, difficulties: data }));
       })
       .catch((error) => {
         console.error(error);
@@ -45,7 +43,7 @@ export const Homepage = () => {
     fetch("http://localhost:8080/diets")
       .then((response) => response.json())
       .then((data) => {
-        setDiets(data);
+        setRecipesDetails((prev) => ({ ...prev, diets: data }));
       })
       .catch((error) => {
         console.error(error);
@@ -59,8 +57,8 @@ export const Homepage = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, [recipesPage, recipesPerPage]);
-
+  }, []);
+  console.log(recipesDetails);
   const setFiltered = (recipes) => {
     setRecipes(recipes);
   };
@@ -80,9 +78,9 @@ export const Homepage = () => {
       <Navbar />
       <Filters
         setRecipes={setFiltered}
-        cousines={cousines}
-        difficulties={difficulties}
-        diets={diets}
+        cousines={recipesDetails.cuisines}
+        difficulties={recipesDetails.difficulties}
+        diets={recipesDetails.diets}
       />
       <Flex>
         <Flex
