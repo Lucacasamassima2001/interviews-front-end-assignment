@@ -15,46 +15,38 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
     difficulty: "",
     diet: "",
   });
+  console.log(searchData);
 
   const handleFiltersChange = (e) => {
     setSearchData({ ...searchData, [e.target.name]: e.target.value });
   };
   const searchFilteredRecipes = async () => {
+    let url = "http://localhost:8080/recipes";
+    let params = [];
+
     if (searchData.name) {
-      const response = await fetch(
-        `http://localhost:8080/recipes?name_like=${searchData.name}`
-      );
+      params.push(`name_like=${searchData.name}`);
+    }
+    if (searchData.cousine) {
+      params.push(`cuisineId=${searchData.cousine}`);
+    }
+    if (searchData.difficulty) {
+      params.push(`difficultyId=${searchData.difficulty}`);
+    }
+    if (searchData.diet) {
+      params.push(`dietId=${searchData.diet}`);
+    }
+
+    if (params.length > 0) {
+      url += "?" + params.join("&");
+    }
+
+    try {
+      const response = await fetch(url);
       const data = await response.json();
       setRecipes(data);
-    } else if (searchData.cousine) {
-      const response = await fetch(
-        `http://localhost:8080/recipes?cuisineId=${searchData.cousine}`
-      );
-      const data = await response.json();
-      setRecipes(data);
-    } else if (searchData.difficulty) {
-      const response = await fetch(
-        `http://localhost:8080/recipes?difficultyId=${searchData.difficulty}`
-      );
-      const data = await response.json();
-      setRecipes(data);
-    } else if (searchData.diet) {
-      const response = await fetch(
-        `http://localhost:8080/recipes?dietId=${searchData.diet}`
-      );
-      const data = await response.json();
-      setRecipes(data);
-    } else if (
-      searchData.name !== "" &&
-      searchData.cousine !== "" &&
-      searchData.difficulty !== "" &&
-      searchData.diet !== ""
-    ) {
-      const response = await fetch(
-        `http://localhost:8080/recipes?name_like=${searchData.name}&cuisineId=${searchData.cousine}&difficultyId=${searchData.difficulty}&dietId=${searchData.diet}`
-      );
-      const data = await response.json();
-      setRecipes(data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
@@ -109,6 +101,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
               >
                 {cousines.map((cousine) => (
                   <Button
+                    selected={searchData.cousine === cousine.id}
                     name="cousine"
                     value={cousine.id}
                     onClick={handleFiltersChange}
@@ -135,6 +128,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
               >
                 {difficulties.map((difficulty) => (
                   <Button
+                    selected={searchData.difficulty === difficulty.id}
                     name="difficulty"
                     value={difficulty.id}
                     onClick={handleFiltersChange}
@@ -161,6 +155,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
               >
                 {diets.map((diet) => (
                   <Button
+                    selected={searchData.diet === diet.id}
                     name="diet"
                     value={diet.id}
                     onClick={handleFiltersChange}
