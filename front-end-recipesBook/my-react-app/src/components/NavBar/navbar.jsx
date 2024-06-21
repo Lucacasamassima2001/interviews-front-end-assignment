@@ -8,9 +8,6 @@ export const Navbar = () => {
         <LinkButton width="250px" textsize="30px" to="/">
           Welcome
         </LinkButton>
-        <LinkButton width="250px" textsize="30px" to="/Homepage">
-          Homepage
-        </LinkButton>
         <LinkButton width="250px" textsize="30px" to="/about">
           About
         </LinkButton>

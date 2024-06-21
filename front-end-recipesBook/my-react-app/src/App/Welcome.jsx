@@ -25,7 +25,7 @@ function App() {
             />
           </Flex>
           <Flex direction="column" justify="center" align="center" gap="10px">
-            <Image src="/cook.jpg" width="200px" height="200px" />
+            <Image src="/cook.jpg" width="200px" height="200px" radius="50%" />
             <Title>Welcome to RecipesBook</Title>
             <Paragraph fontSize="30px">
               The place for all your recipes

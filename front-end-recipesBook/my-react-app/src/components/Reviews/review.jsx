@@ -23,6 +23,7 @@ export const Review = ({ review }) => {
       border="1px solid black"
       radius="10px"
       direction="column"
+      background="#F6E6CB"
     >
       <Paragraph>{transformToStars(review.rating)}</Paragraph>
       <Paragraph>{review.comment}</Paragraph>

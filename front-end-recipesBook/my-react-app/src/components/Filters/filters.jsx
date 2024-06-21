@@ -5,6 +5,7 @@ import Button from "../../UI/Button/button";
 import Flex from "../../UI/Flex/Flex";
 import Input from "../../UI/Input/input";
 import Label from "../../UI/Input/label";
+import Wrapper from "../../UI/Wrapper/wrapper";
 
 export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
   const [showFilters, setShowFilters] = useState(false);
@@ -72,121 +73,149 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
   };
 
   return (
-    <Flex padding="10px" direction="column">
-      {showFilters && (
-        <Flex
-          padding="10px"
-          gap="10px"
-          width="100%"
-          height="500px"
-          direction="column"
-        >
-          <Title fontSize="30px">Filters</Title>
-          <Flex direction="column" align="baseline" gap="10px">
-            <Label>Search by name:</Label>
-            <Input
-              name="name"
-              onChange={handleFiltersChange}
-              width="300px"
-              height="40px"
-              fontSize="20px"
-            />
-          </Flex>
-          <Flex direction="column">
-            <Label>Cuisines:</Label>
-            <Flex width="600px" wrap="wrap">
-              {cousines.map((cousine) => (
-                <Button
-                  name="cousine"
-                  value={cousine.id}
-                  onClick={handleFiltersChange}
-                  key={cousine.id}
-                  width="150px"
-                  height="40px"
-                  fontSize="20px"
-                >
-                  {cousine.name}
-                </Button>
-              ))}
+    <Wrapper margin="100px 0 0 0" background="#E7D4B5">
+      <Flex align="center" padding="10px" direction="column">
+        {showFilters && (
+          <Flex
+            padding="10px"
+            gap="10px"
+            width="85%"
+            height="500px"
+            direction="row"
+            wrap="wrap"
+            justify="center"
+          >
+            <Flex direction="column" align="baseline" gap="10px">
+              <Label fontSize="20px">Search by name:</Label>
+              <Input
+                name="name"
+                onChange={handleFiltersChange}
+                width="300px"
+                height="40px"
+                fontSize="20px"
+                placeholder="Recipe name..."
+              />
+            </Flex>
+            <Flex direction="column">
+              <Label align="center" fontSize="20px">
+                Cuisines:
+              </Label>
+              <Flex
+                width="600px"
+                justify="center"
+                wrap="wrap"
+                gap="10px"
+                align="baseline"
+              >
+                {cousines.map((cousine) => (
+                  <Button
+                    name="cousine"
+                    value={cousine.id}
+                    onClick={handleFiltersChange}
+                    key={cousine.id}
+                    width="150px"
+                    height="40px"
+                    fontSize="20px"
+                  >
+                    {cousine.name}
+                  </Button>
+                ))}
+              </Flex>
+            </Flex>
+            <Flex direction="column">
+              <Label align="center" fontSize="20px">
+                Difficulty:
+              </Label>
+              <Flex
+                width="600px"
+                justify="center"
+                wrap="wrap"
+                gap="10px"
+                align="baseline"
+              >
+                {difficulties.map((difficulty) => (
+                  <Button
+                    name="difficulty"
+                    value={difficulty.id}
+                    onClick={handleFiltersChange}
+                    key={difficulty.id}
+                    width="100px"
+                    height="40px"
+                    fontSize="20px"
+                  >
+                    {difficulty.name}
+                  </Button>
+                ))}
+              </Flex>
+            </Flex>
+            <Flex direction="column">
+              <Label align="center" fontSize="20px">
+                Diets:
+              </Label>
+              <Flex
+                width="600px"
+                justify="center"
+                wrap="wrap"
+                gap="10px"
+                align="baseline"
+              >
+                {diets.map((diet) => (
+                  <Button
+                    name="diet"
+                    value={diet.id}
+                    onClick={handleFiltersChange}
+                    key={diet.id}
+                    width="200px"
+                    height="40px"
+                    fontSize="20px"
+                  >
+                    {diet.name}
+                  </Button>
+                ))}
+              </Flex>
+            </Flex>
+            <Flex gap="10px" alig="baseline" justify="center">
+              <Button
+                onClick={() => searchFilteredRecipes()}
+                width="150px"
+                height="40px"
+                fontSize="20px"
+              >
+                Search
+              </Button>
+              <Button
+                onClick={() => resetFilters()}
+                width="150px"
+                height="40px"
+                fontSize="20px"
+              >
+                Clear Filters
+              </Button>
             </Flex>
           </Flex>
-          <Flex direction="column">
-            <Label>Difficulty:</Label>
-            <Flex>
-              {difficulties.map((difficulty) => (
-                <Button
-                  name="difficulty"
-                  value={difficulty.id}
-                  onClick={handleFiltersChange}
-                  key={difficulty.id}
-                  width="100px"
-                  height="40px"
-                  fontSize="20px"
-                >
-                  {difficulty.name}
-                </Button>
-              ))}
-            </Flex>
-          </Flex>
-          <Flex direction="column">
-            <Label>Diets:</Label>
-            <Flex>
-              {diets.map((diet) => (
-                <Button
-                  name="diet"
-                  value={diet.id}
-                  onClick={handleFiltersChange}
-                  key={diet.id}
-                  width="200px"
-                  height="40px"
-                  fontSize="20px"
-                >
-                  {diet.name}
-                </Button>
-              ))}
-            </Flex>
-          </Flex>
-          <Flex gap="10px" alig="baseline" justify="center">
-            <Button
-              onClick={() => searchFilteredRecipes()}
-              width="150px"
-              height="40px"
-              fontSize="20px"
-            >
-              Search
-            </Button>
-            <Button
-              onClick={() => resetFilters()}
-              width="150px"
-              height="40px"
-              fontSize="20px"
-            >
-              Clear Filters
-            </Button>
-          </Flex>
+        )}
+        <Flex margin="10px 0 0 0" gap="5px" align="baseline">
+          <Title fontSize="30px">{showFilters ? "Hide" : "Open"} Filters</Title>
+          <Button
+            width="40px"
+            height="40px"
+            fontSize="20px"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            {showFilters ? (
+              <i
+                style={{ color: "#74512d" }}
+                className="fa-solid fa-arrow-up"
+              ></i>
+            ) : (
+              <i
+                style={{ color: "#74512d" }}
+                className="fa-solid fa-arrow-down"
+              ></i>
+            )}
+          </Button>
         </Flex>
-      )}
-      <Flex margin="40px 0 0 0" gap="5px" align="baseline">
-        <Title fontSize="20px">Filter Recipes</Title>
-        <Button
-          width="40px"
-          height="40px"
-          fontSize="20px"
-          onClick={() => setShowFilters(!showFilters)}
-        >
-          {showFilters ? (
-            <i
-              style={{ color: "#74512d" }}
-              className="fa-solid fa-arrow-up"
-            ></i>
-          ) : (
-            <i
-              style={{ color: "#74512d" }}
-              className="fa-solid fa-arrow-down"
-            ></i>
-          )}
-        </Button>
       </Flex>
-    </Flex>
+    </Wrapper>
   );
 };

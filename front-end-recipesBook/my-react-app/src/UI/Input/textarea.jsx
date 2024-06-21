@@ -12,6 +12,9 @@ const TextArea = styled.textarea`
   align-items: center;
   border: ${(props) => props.border || "none"};
   padding: ${(props) => props.padding || "5"};
+  &::placeholder {
+    color: white;
+  }
 `;
 
 export default TextArea;

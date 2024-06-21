@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   background-color: ${(props) => props.background || "white"};
   padding: ${(props) => props.padding || "0px"};
   background-size: cover;
+  margin: ${(props) => props.margin || "none"};
   background-repeat: no-repeat;
   background-image: ${(props) => props.backgroundImage || "none"};
 `;

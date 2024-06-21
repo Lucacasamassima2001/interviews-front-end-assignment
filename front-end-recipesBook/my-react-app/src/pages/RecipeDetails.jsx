@@ -23,6 +23,7 @@ export const RecipeDetails = () => {
     date: utcDate,
   });
   const [hover, setHover] = useState(null);
+  // eslint-disable-next-line no-unused-vars
   const [totalStars, setTotalStars] = useState(5);
   const path = window.location.pathname.split("/");
   useEffect(() => {
@@ -37,6 +38,7 @@ export const RecipeDetails = () => {
       });
 
     // fetch comments of recipe
+
     fetch(`http://localhost:8080/recipes/${path[2]}/comments`)
       .then((response) => response.json())
       .then((data) => {
@@ -65,11 +67,23 @@ export const RecipeDetails = () => {
       rating: 0,
       date: utcDate,
     });
+
+    const fetchComments = () => {
+      fetch(`http://localhost:8080/recipes/${path[2]}/comments`)
+        .then((response) => response.json())
+        .then((data) => {
+          setComments(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+    fetchComments();
   };
 
   return (
     <>
-      <Wrapper width="100%" height="100%" background="#E7D4B5">
+      <Wrapper padding="10px" width="100%" height="100%" background="#E7D4B5">
         <GoBackButton />
         <Flex direction="column" gap="10px" align="center">
           <Title width="100%" aligntext="center">
@@ -116,11 +130,16 @@ export const RecipeDetails = () => {
               </List>
             </Flex>
           </Flex>
-          <Flex wrap="wrap" direction="column">
+          <Flex direction="column">
             {comments ? (
               <Flex direction="column" gap="10px">
                 <Title fontSize="40px">Comments:</Title>
-                <List direction="row" liststyle="none">
+                <List
+                  width="800px"
+                  direction="row"
+                  liststyle="none"
+                  wrap="wrap"
+                >
                   {comments.map((comment) => (
                     <ListItem fontSize="30px" key={comment.id}>
                       <Review review={comment} />
@@ -185,12 +204,15 @@ export const RecipeDetails = () => {
                     }
                   />
                   <Button
-                    border="1px solid black"
+                    border="1px solid #74512d"
                     height="65px"
                     padding="10px"
                     onClick={() => onCreatingReview()}
                   >
-                    <i className="fa-solid fa-plus"></i>
+                    <i
+                      style={{ color: "#74512d" }}
+                      className="fa-solid fa-plus"
+                    ></i>
                   </Button>
                 </Flex>
               </form>
