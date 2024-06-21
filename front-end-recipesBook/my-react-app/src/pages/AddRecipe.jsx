@@ -11,9 +11,7 @@ import Wrapper from "../UI/Wrapper/wrapper";
 import Image from "../UI/image/Image";
 
 export const AddRecipe = () => {
-  const [cousines, setCousines] = useState([]);
-  const [difficulties, setDifficulties] = useState([]);
-  const [diets, setDiets] = useState([]);
+  const [recipesDetails, setRecipesDetails] = useState({});
   const [recipeData, setRecipeData] = useState({
     name: "",
     instructions: "",
@@ -33,7 +31,7 @@ export const AddRecipe = () => {
     fetch("http://localhost:8080/cuisines")
       .then((response) => response.json())
       .then((data) => {
-        setCousines(data);
+        setRecipesDetails((prev) => ({ ...prev, cuisines: data }));
       })
       .catch((error) => {
         console.error(error);
@@ -43,7 +41,7 @@ export const AddRecipe = () => {
     fetch("http://localhost:8080/difficulties")
       .then((response) => response.json())
       .then((data) => {
-        setDifficulties(data);
+        setRecipesDetails((prev) => ({ ...prev, difficulties: data }));
       })
       .catch((error) => {
         console.error(error);
@@ -53,7 +51,7 @@ export const AddRecipe = () => {
     fetch("http://localhost:8080/diets")
       .then((response) => response.json())
       .then((data) => {
-        setDiets(data);
+        setRecipesDetails((prev) => ({ ...prev, diets: data }));
       })
       .catch((error) => {
         console.error(error);
@@ -171,7 +169,7 @@ export const AddRecipe = () => {
               <Flex direction="column">
                 <Label fontSize="30px">Cuisine:</Label>
                 <Flex>
-                  {cousines.map((cousine) => (
+                  {recipesDetails.cuisines?.map((cousine) => (
                     <Button
                       selected={recipeData.cuisineId === cousine.id}
                       name="cuisineId"
@@ -191,7 +189,7 @@ export const AddRecipe = () => {
               <Flex direction="column">
                 <Label fontSize="30px">Difficulty:</Label>
                 <Flex>
-                  {difficulties.map((difficulty) => (
+                  {recipesDetails.difficulties?.map((difficulty) => (
                     <Button
                       selected={recipeData.difficultyId === difficulty.id}
                       name="difficultyId"
@@ -211,7 +209,7 @@ export const AddRecipe = () => {
               <Flex direction="column">
                 <Label fontSize="30px">Diets:</Label>
                 <Flex>
-                  {diets.map((diet) => (
+                  {recipesDetails.diets?.map((diet) => (
                     <Button
                       selected={recipeData.dietId === diet.id}
                       name="dietId"
@@ -231,96 +229,27 @@ export const AddRecipe = () => {
               <Flex direction="column">
                 <Label fontSize="30px">Ingredients:</Label>
                 <Flex margin="10px" width="600px" wrap="wrap" gap="10px">
-                  <Input
-                    width="200px"
-                    height="40px"
-                    fontSize="20px"
-                    padding="5px"
-                    placeholder="Ingredient 1"
-                    name="ingredient1"
-                    type="text"
-                    onChange={(e) =>
-                      setRecipeData((prev) => ({
-                        ...prev,
-                        ingredients: {
-                          ...prev.ingredients,
-                          ingredient1: e.target.value,
-                        },
-                      }))
-                    }
-                  />
-                  <Input
-                    width="200px"
-                    height="40px"
-                    fontSize="20px"
-                    padding="5px"
-                    placeholder="Ingredient 2"
-                    name="ingredient2"
-                    type="text"
-                    onChange={(e) =>
-                      setRecipeData((prev) => ({
-                        ...prev,
-                        ingredients: {
-                          ...prev.ingredients,
-                          ingredient2: e.target.value,
-                        },
-                      }))
-                    }
-                  />
-                  <Input
-                    width="200px"
-                    height="40px"
-                    fontSize="20px"
-                    padding="5px"
-                    placeholder="Ingredient 3"
-                    name="ingredient3"
-                    type="text"
-                    onChange={(e) =>
-                      setRecipeData((prev) => ({
-                        ...prev,
-                        ingredients: {
-                          ...prev.ingredients,
-                          ingredient3: e.target.value,
-                        },
-                      }))
-                    }
-                  />
-                  <Input
-                    width="200px"
-                    height="40px"
-                    fontSize="20px"
-                    padding="5px"
-                    placeholder="Ingredient 4"
-                    name="ingredient4"
-                    type="text"
-                    onChange={(e) =>
-                      setRecipeData((prev) => ({
-                        ...prev,
-                        ingredients: {
-                          ...prev.ingredients,
-                          ingredient4: e.target.value,
-                        },
-                      }))
-                    }
-                  />
-                  <Input
-                    width="200px"
-                    height="40px"
-                    fontSize="20px"
-                    padding="5px"
-                    placeholder="Ingredient 5"
-                    name="ingredient5"
-                    type="text"
-                    onChange={(e) =>
-                      setRecipeData((prev) => ({
-                        ...prev,
-                        ingredients: {
-                          ...prev.ingredients,
-                          ingredient5: e.target.value,
-                        },
-                      }))
-                    }
-                  />
+                  {[...Array(5)].map((_, index) => (
+                    <Input
+                      key={index}
+                      width="200px"
+                      height="40px"
+                      fontSize="20px"
+                      padding="5px"
+                      placeholder={`Ingredient ${index + 1}`}
+                      name={`ingredient${index + 1}`}
+                      type="text"
+                      onChange={(e) =>
+                        setRecipeData((prev) => ({
+                          ...prev,
+                          ingredients: {
+                            ...prev.ingredients,
+                            [`ingredient${index + 1}`]: e.target.value,
+                          },
+                        }))
+                      }
+                    />
+                  ))}
                 </Flex>
               </Flex>
               <Flex>
