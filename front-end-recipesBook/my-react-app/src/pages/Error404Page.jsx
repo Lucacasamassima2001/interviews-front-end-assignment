@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import Paragraph from "../UI/paragraph/paragraph";
 import Title from "../UI/titles/title";
 import { GoBackButton } from "../components/GoBackButton/goBackButton";
 
-export const Error404Page = () => {
+export const Error404Page = ({ wrongPath }) => {
   return (
     <>
       <GoBackButton />
@@ -15,7 +16,7 @@ export const Error404Page = () => {
         aligntext="center"
         animation="not-found"
       >
-        Please try again later!
+        {wrongPath ? "This page doesn't exist" : "Please try again later!"}
       </Paragraph>
     </>
   );

@@ -9,6 +9,7 @@ import { GoBackButton } from "../components/GoBackButton/goBackButton";
 import TextArea from "../UI/Input/textarea";
 import Wrapper from "../UI/Wrapper/wrapper";
 import Image from "../UI/image/Image";
+import Modal from "../components/Modals/Modal";
 
 export const AddRecipe = () => {
   const [recipesDetails, setRecipesDetails] = useState({});
@@ -25,7 +26,9 @@ export const AddRecipe = () => {
     previewURL: null,
     isActive: false,
   });
+  const [success, setSuccess] = useState(false);
   const imgRef = useRef(null);
+  const dialog = useRef(null);
   useEffect(() => {
     // fetch cousines
     fetch("http://localhost:8080/cuisines")
@@ -119,6 +122,8 @@ export const AddRecipe = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        setSuccess(true);
+        dialog.current.open();
       })
       .catch((error) => {
         console.error(error);
@@ -127,7 +132,7 @@ export const AddRecipe = () => {
   return (
     <Wrapper background="#E7D4B5" height="100vh">
       <GoBackButton />
-
+      <Modal isSuccess={success} ref={dialog} />
       <Flex padding="10px" gap="50px" direction="row">
         <Flex direction="column">
           <Title>Add Recipe</Title>
