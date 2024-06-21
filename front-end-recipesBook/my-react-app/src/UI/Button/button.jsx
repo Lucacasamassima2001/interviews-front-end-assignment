@@ -6,7 +6,7 @@ const Button = styled.button`
   border-radius: ${(props) => props.borderRadius || "10px"};
   background-color: ${(props) =>
     props.bgColor || props.selected ? "#74512d" : "transparent"};
-  color: ${(props) => props.color || "black"};
+  color: ${(props) => (props.color || props.selected ? "white" : "black")};
   font-size: ${(props) => props.fontSize || "20px"};
   cursor: pointer;
   display: flex;

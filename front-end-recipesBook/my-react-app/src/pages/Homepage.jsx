@@ -7,11 +7,11 @@ import Flex from "../UI/Flex/Flex";
 import { RecipeItem } from "../components/Recipe/recipe";
 import Button from "../UI/Button/button";
 import Image from "../UI/image/Image";
+import Paragraph from "../UI/paragraph/paragraph";
 
 export const Homepage = () => {
   const [recipes, setRecipes] = useState([]);
   const [recipesPage, setRecipesPage] = useState(1);
-  // todo: add pagination
   // eslint-disable-next-line no-unused-vars
   const [recipesPerPage, setRecipesPerPage] = useState(10);
   const [cousines, setCousines] = useState([]);
@@ -20,7 +20,6 @@ export const Homepage = () => {
   let totalPages = Math.ceil(recipes.length / recipesPerPage);
   const startIndex = (recipesPage - 1) * recipesPerPage;
   const endIndex = startIndex + recipesPerPage;
-
   useEffect(() => {
     // fetch cousines
     fetch("http://localhost:8080/cuisines")
@@ -102,6 +101,11 @@ export const Homepage = () => {
               <RecipeItem key={recipe.id} recipe={recipe} />
             ))}
           </Flex>
+          {recipes.length === 0 && (
+            <Paragraph animation={"not-found"} fontSize="30px">
+              No recipes found!!!
+            </Paragraph>
+          )}
         </Flex>
         <Flex width="20%"></Flex>
       </Flex>
