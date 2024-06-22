@@ -64,8 +64,8 @@ export const AddRecipe = () => {
     // check if form is filled to allow to create
 
     if (
-      recipeData.name !== "" &&
-      recipeData.instructions !== "" &&
+      recipeData.name.trim() !== "" &&
+      recipeData.instructions.trim() !== "" &&
       recipeData.image !== null
     ) {
       setEmptyFields(false);
@@ -294,7 +294,10 @@ export const AddRecipe = () => {
                       type="file"
                       onChange={(e) => handleImageChange(e)}
                     />
-                    <Button onClick={() => imgRef.current.click()}>
+                    <Button
+                      fontSize="30px"
+                      onClick={() => imgRef.current.click()}
+                    >
                       <i
                         style={{ color: "white" }}
                         className="fa-solid fa-image"
@@ -305,10 +308,11 @@ export const AddRecipe = () => {
                 <Flex>
                   <Button
                     onClick={() => createNewRecipe()}
-                    width="100px"
+                    width="180px"
                     height="40px"
-                    fontSize="10px"
+                    fontSize="20px"
                     color="white"
+                    hoverTextDecoration="underline"
                     disabled={emptyFields}
                   >
                     Create new Recipe

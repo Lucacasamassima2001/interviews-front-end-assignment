@@ -66,7 +66,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
   return (
     <Wrapper
       width="80%"
-      height="870px"
+      height="900px"
       borderRadius="10px"
       background={showFilters ? "#E7D4B5" : "transparent"}
     >
@@ -126,7 +126,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                     value={difficulty.id}
                     onClick={handleFiltersChange}
                     key={difficulty.id}
-                    width="100px"
+                    width="80px"
                     height="40px"
                     fontSize="15px"
                   >
@@ -135,11 +135,11 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                 ))}
               </Flex>
             </Flex>
-            <Flex direction="column">
+            <Flex width="100%" direction="column">
               <Label fontWeight="bold" align="center" fontSize="20px">
                 Diets:
               </Label>
-              <Flex justify="center" wrap="wrap" gap="10px" align="baseline">
+              <Flex wrap="wrap" gap="10px" align="baseline">
                 {diets.map((diet) => (
                   <Button
                     selected={searchData.diet === diet.id}
@@ -147,7 +147,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                     value={diet.id}
                     onClick={handleFiltersChange}
                     key={diet.id}
-                    width="200px"
+                    width="150px"
                     height="40px"
                     fontSize="15px"
                   >
@@ -162,6 +162,8 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                 width="150px"
                 height="40px"
                 fontSize="20px"
+                activeColor="#74512d"
+                activeTextColor="white"
               >
                 Search
               </Button>
@@ -170,6 +172,8 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                 width="150px"
                 height="40px"
                 fontSize="20px"
+                activeColor="#74512d"
+                activeTextColor="white"
               >
                 Clear Filters
               </Button>

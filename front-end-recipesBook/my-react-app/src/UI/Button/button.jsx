@@ -18,6 +18,11 @@ const Button = styled.button`
   &:hover {
     background-color: ${(props) => props.hoverColor || "none"};
     color: ${(props) => props.hoverTextColor || "none"};
+    text-decoration: ${(props) => props.hoverTextDecoration || "none"};
+  }
+  &:active {
+    background-color: ${(props) => props.activeColor || "none"};
+    color: ${(props) => props.activeTextColor || "none"};
   }
 `;
 
