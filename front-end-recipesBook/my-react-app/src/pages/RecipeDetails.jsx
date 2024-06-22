@@ -26,6 +26,7 @@ export const RecipeDetails = () => {
   const [hover, setHover] = useState(null);
   // eslint-disable-next-line no-unused-vars
   let totalStars = 5;
+  console.log(recipeData);
   const path = window.location.pathname.split("/");
   useEffect(() => {
     // fetch data from id in the path
@@ -87,16 +88,16 @@ export const RecipeDetails = () => {
   return (
     <>
       {!notFound ? (
-        <Wrapper padding="10px" width="100%" height="100%" background="#E7D4B5">
-          <GoBackButton />
+        <Wrapper padding="10px" background="rgba(0, 0, 0, 0.5)">
+          <GoBackButton color="white" />
           <Flex direction="column" gap="10px" align="center">
-            <Title width="100%" aligntext="center">
+            <Title color="white" width="100%" aligntext="center">
               {recipeData.data?.name}
             </Title>
             <Image
               radius="20px"
-              width="500px"
-              height="500px"
+              width="800px"
+              height="800px"
               src={`/server${recipeData.data?.image}`}
             />
           </Flex>
@@ -115,8 +116,10 @@ export const RecipeDetails = () => {
                 gap="10px"
                 align="left"
               >
-                <Label fontSize="40px">Instructions:</Label>
-                <Paragraph fontSize="30px">
+                <Label color="white" fontSize="40px">
+                  Instructions:
+                </Label>
+                <Paragraph color="white" fontSize="30px">
                   {recipeData.data?.instructions}
                 </Paragraph>
               </Flex>
@@ -126,10 +129,12 @@ export const RecipeDetails = () => {
                 gap="10px"
                 align="left"
               >
-                <Label fontSize="40px">Ingredients:</Label>
+                <Label color="white" fontSize="40px">
+                  Ingredients:
+                </Label>
                 <List direction="column" liststyle="circle">
                   {recipeData.data?.ingredients?.map((ingredient) => (
-                    <ListItem fontSize="30px" key={ingredient}>
+                    <ListItem color="white" fontSize="30px" key={ingredient}>
                       {ingredient}
                     </ListItem>
                   ))}
@@ -139,7 +144,9 @@ export const RecipeDetails = () => {
             <Flex direction="column">
               {recipeData.comments?.length > 0 ? (
                 <Flex direction="column" gap="10px">
-                  <Title fontSize="40px">Comments:</Title>
+                  <Title color="white" fontSize="40px">
+                    Comments:
+                  </Title>
                   <List
                     width="800px"
                     direction="row"
@@ -154,12 +161,14 @@ export const RecipeDetails = () => {
                   </List>
                 </Flex>
               ) : (
-                <Paragraph color="#74512D" fontSize="30px">
+                <Paragraph color="white" fontSize="30px">
                   No comments yet
                 </Paragraph>
               )}
               <Flex width="100%" direction="column">
-                <Title fontSize="40px">Rate this recipe:</Title>
+                <Title color="white" fontSize="40px">
+                  Rate this recipe:
+                </Title>
                 <form onSubmit={(e) => e.preventDefault()}>
                   {[...Array(totalStars)].map((star, index) => {
                     const currentRating = index + 1;
@@ -212,13 +221,14 @@ export const RecipeDetails = () => {
                       }
                     />
                     <Button
-                      border="1px solid #74512d"
+                      border="2px solid #74512d"
                       height="65px"
                       padding="10px"
                       onClick={() => onCreatingReview()}
+                      disabled={!newComment.comment}
                     >
                       <i
-                        style={{ color: "#74512d" }}
+                        style={{ color: "white" }}
                         className="fa-solid fa-plus"
                       ></i>
                     </Button>

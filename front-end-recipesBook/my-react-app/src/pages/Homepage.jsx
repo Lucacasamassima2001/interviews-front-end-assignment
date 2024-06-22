@@ -58,13 +58,11 @@ export const Homepage = () => {
         console.error(error);
       });
   }, []);
-  console.log(recipesDetails);
   const setFiltered = (recipes) => {
     setRecipes(recipes);
   };
-
   return (
-    <Wrapper background="transparent">
+    <Wrapper background="rgb(0, 0, 0, 0.3)">
       <Flex
         padding="20px"
         align="center"
@@ -79,7 +77,7 @@ export const Homepage = () => {
       </Flex>
       <Navbar />
 
-      <Flex margin="100px 0 0 0">
+      <Flex gap="100px" margin="100px 0 0 0">
         <Flex
           radius="10px"
           padding="10px"
