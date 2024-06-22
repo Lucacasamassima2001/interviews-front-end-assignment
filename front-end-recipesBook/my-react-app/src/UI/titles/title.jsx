@@ -8,6 +8,7 @@ const Title = styled.h1`
   font-weight: ${(props) => props.fontWeight || "normal"};
   font-style: ${(props) => props.fontStyle || "normal"};
   margin: ${(props) => props.margin || "none"};
+  background-color: ${(props) => props.background || "none"};
 `;
 
 export default Title;

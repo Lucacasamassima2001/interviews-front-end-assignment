@@ -5,13 +5,31 @@ export const Navbar = () => {
   return (
     <>
       <Flex justify="center" gap="100px">
-        <LinkButton width="250px" textsize="30px" to="/">
+        <LinkButton
+          color="white"
+          width="300px"
+          padding="10px"
+          textsize="40px"
+          to="/"
+        >
           Welcome
         </LinkButton>
-        <LinkButton width="250px" textsize="30px" to="/about">
+        <LinkButton
+          color="white"
+          width="300px"
+          padding="10px"
+          textsize="40px"
+          to="/about"
+        >
           About
         </LinkButton>
-        <LinkButton width="250px" textsize="30px" to="/create-recipe">
+        <LinkButton
+          color="white"
+          width="300px"
+          padding="10px"
+          textsize="40px"
+          to="/create-recipe"
+        >
           Add you recipe
         </LinkButton>
       </Flex>

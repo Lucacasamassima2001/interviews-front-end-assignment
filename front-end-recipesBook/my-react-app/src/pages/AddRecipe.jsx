@@ -26,6 +26,7 @@ export const AddRecipe = () => {
     previewURL: null,
     isActive: false,
   });
+  const [emptyFields, setEmptyFields] = useState(true);
   const [success, setSuccess] = useState(false);
   const imgRef = useRef(null);
   const dialog = useRef(null);
@@ -59,7 +60,17 @@ export const AddRecipe = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+
+    // check if form is filled to allow to create
+
+    if (
+      recipeData.name !== "" &&
+      recipeData.instructions !== "" &&
+      recipeData.image !== null
+    ) {
+      setEmptyFields(false);
+    }
+  }, [emptyFields, recipeData]);
 
   const handleRecipeChange = (e) => {
     setRecipeData({
@@ -130,188 +141,225 @@ export const AddRecipe = () => {
       });
   };
   return (
-    <Wrapper background="#E7D4B5" height="100vh">
-      <GoBackButton />
+    <Wrapper background="transparent">
+      <GoBackButton color="white" />
       <Modal isSuccess={success} ref={dialog} />
-      <Flex padding="10px" gap="50px" direction="row">
-        <Flex direction="column">
-          <Title>Add Recipe</Title>
-          <form onSubmit={(e) => e.preventDefault()}>
-            <Flex direction="column" gap="10px">
-              <Flex direction="column" align="baseline" gap="10px">
-                <Label fontSize="30px" htmlFor="name">
-                  Name
-                </Label>
-                <Input
-                  width={"900px"}
-                  padding="10px"
-                  fontSize="20px"
-                  onChange={handleRecipeChange}
-                  id="name"
-                  name="name"
-                  type="text"
-                  value={recipeData.name}
-                  placeholder="Your Recipe name..."
-                />
-              </Flex>
-              <Flex direction="column" align="baseline" gap="10px">
-                <Label fontSize="30px" htmlFor="name">
-                  Instructions
-                </Label>
-                <TextArea
-                  width={"900px"}
-                  padding="10px"
-                  fontSize="20px"
-                  height="200px"
-                  onChange={handleRecipeChange}
-                  id="instructions"
-                  name="instructions"
-                  type="textarea"
-                  value={recipeData.instructions}
-                  placeholder="Your Recipe instructions..."
-                />
-              </Flex>
-              <Flex direction="column">
-                <Label fontSize="30px">Cuisine:</Label>
-                <Flex>
-                  {recipesDetails.cuisines?.map((cousine) => (
-                    <Button
-                      selected={recipeData.cuisineId === cousine.id}
-                      name="cuisineId"
-                      value={cousine.id}
-                      onClick={handleRecipeChange}
-                      key={cousine.id}
-                      width="100px"
-                      height="40px"
-                      fontSize="20px"
-                      padding="30px"
-                    >
-                      {cousine.name}
-                    </Button>
-                  ))}
-                </Flex>
-              </Flex>
-              <Flex direction="column">
-                <Label fontSize="30px">Difficulty:</Label>
-                <Flex>
-                  {recipesDetails.difficulties?.map((difficulty) => (
-                    <Button
-                      selected={recipeData.difficultyId === difficulty.id}
-                      name="difficultyId"
-                      value={difficulty.id}
-                      onClick={handleRecipeChange}
-                      key={difficulty.id}
-                      width="100px"
-                      height="40px"
-                      padding="30px"
-                      fontSize="20px"
-                    >
-                      {difficulty.name}
-                    </Button>
-                  ))}
-                </Flex>
-              </Flex>
-              <Flex direction="column">
-                <Label fontSize="30px">Diets:</Label>
-                <Flex>
-                  {recipesDetails.diets?.map((diet) => (
-                    <Button
-                      selected={recipeData.dietId === diet.id}
-                      name="dietId"
-                      value={diet.id}
-                      onClick={handleRecipeChange}
-                      key={diet.id}
-                      width="200px"
-                      height="40px"
-                      padding="30px"
-                      fontSize="20px"
-                    >
-                      {diet.name}
-                    </Button>
-                  ))}
-                </Flex>
-              </Flex>
-              <Flex direction="column">
-                <Label fontSize="30px">Ingredients:</Label>
-                <Flex margin="10px" width="600px" wrap="wrap" gap="10px">
-                  {[...Array(5)].map((_, index) => (
+      <Flex justify="center">
+        <Flex
+          background="rgba(0, 0, 0, 0.5)"
+          padding="10px"
+          justify="center"
+          height="90%"
+          radius="10px"
+        >
+          <Flex padding="10px" gap="50px" direction="row">
+            <Flex direction="column">
+              <Title color="white">Add Recipe</Title>
+              <form onSubmit={(e) => e.preventDefault()}>
+                <Flex direction="column" gap="10px">
+                  <Flex direction="column" align="baseline" gap="10px">
+                    <Label color="white" fontSize="30px" htmlFor="name">
+                      Name
+                    </Label>
                     <Input
-                      key={index}
-                      width="200px"
-                      height="40px"
+                      width={"900px"}
+                      padding="10px"
                       fontSize="20px"
-                      padding="5px"
-                      placeholder={`Ingredient ${index + 1}`}
-                      name={`ingredient${index + 1}`}
+                      onChange={handleRecipeChange}
+                      id="name"
+                      name="name"
                       type="text"
-                      onChange={(e) =>
-                        setRecipeData((prev) => ({
-                          ...prev,
-                          ingredients: {
-                            ...prev.ingredients,
-                            [`ingredient${index + 1}`]: e.target.value,
-                          },
-                        }))
-                      }
+                      value={recipeData.name}
+                      placeholder="Your Recipe name..."
                     />
-                  ))}
+                  </Flex>
+                  <Flex direction="column" align="baseline" gap="10px">
+                    <Label color="white" fontSize="30px" htmlFor="name">
+                      Instructions
+                    </Label>
+                    <TextArea
+                      width={"900px"}
+                      padding="10px"
+                      fontSize="20px"
+                      height="200px"
+                      onChange={handleRecipeChange}
+                      id="instructions"
+                      name="instructions"
+                      type="textarea"
+                      value={recipeData.instructions}
+                      placeholder="Your Recipe instructions..."
+                    />
+                  </Flex>
+                  <Flex direction="column">
+                    <Label color="white" fontSize="30px">
+                      Cuisine:
+                    </Label>
+                    <Flex>
+                      {recipesDetails.cuisines?.map((cousine) => (
+                        <Button
+                          color="white"
+                          selected={recipeData.cuisineId === cousine.id}
+                          name="cuisineId"
+                          value={cousine.id}
+                          onClick={handleRecipeChange}
+                          key={cousine.id}
+                          width="100px"
+                          height="40px"
+                          fontSize="20px"
+                          padding="30px"
+                        >
+                          {cousine.name}
+                        </Button>
+                      ))}
+                    </Flex>
+                  </Flex>
+                  <Flex direction="column">
+                    <Label color="white" fontSize="30px">
+                      Difficulty:
+                    </Label>
+                    <Flex>
+                      {recipesDetails.difficulties?.map((difficulty) => (
+                        <Button
+                          color="white"
+                          selected={recipeData.difficultyId === difficulty.id}
+                          name="difficultyId"
+                          value={difficulty.id}
+                          onClick={handleRecipeChange}
+                          key={difficulty.id}
+                          width="100px"
+                          height="40px"
+                          padding="30px"
+                          fontSize="20px"
+                        >
+                          {difficulty.name}
+                        </Button>
+                      ))}
+                    </Flex>
+                  </Flex>
+                  <Flex direction="column">
+                    <Label color="white" fontSize="30px">
+                      Diets:
+                    </Label>
+                    <Flex>
+                      {recipesDetails.diets?.map((diet) => (
+                        <Button
+                          selected={recipeData.dietId === diet.id}
+                          name="dietId"
+                          value={diet.id}
+                          onClick={handleRecipeChange}
+                          key={diet.id}
+                          width="200px"
+                          height="40px"
+                          padding="30px"
+                          fontSize="20px"
+                          color="white"
+                        >
+                          {diet.name}
+                        </Button>
+                      ))}
+                    </Flex>
+                  </Flex>
+                  <Flex direction="column">
+                    <Label color="white" fontSize="30px">
+                      Ingredients:
+                    </Label>
+                    <Flex margin="10px" width="600px" wrap="wrap" gap="10px">
+                      {[...Array(5)].map((_, index) => (
+                        <Input
+                          key={index}
+                          width="200px"
+                          height="40px"
+                          fontSize="20px"
+                          padding="5px"
+                          placeholder={`Ingredient ${index + 1}`}
+                          name={`ingredient${index + 1}`}
+                          type="text"
+                          onChange={(e) =>
+                            setRecipeData((prev) => ({
+                              ...prev,
+                              ingredients: {
+                                ...prev.ingredients,
+                                [`ingredient${index + 1}`]: e.target.value,
+                              },
+                            }))
+                          }
+                        />
+                      ))}
+                    </Flex>
+                  </Flex>
+                  <Flex>
+                    <Input
+                      ref={imgRef}
+                      style={{ display: "none" }}
+                      type="file"
+                      onChange={(e) => handleImageChange(e)}
+                    />
+                    <Button onClick={() => imgRef.current.click()}>
+                      <i
+                        style={{ color: "white" }}
+                        className="fa-solid fa-image"
+                      ></i>
+                    </Button>
+                  </Flex>
                 </Flex>
-              </Flex>
-              <Flex>
-                <Input
-                  ref={imgRef}
-                  style={{ display: "none" }}
-                  type="file"
-                  onChange={(e) => handleImageChange(e)}
-                />
-                <Button onClick={() => imgRef.current.click()}>
-                  <i className="fa-solid fa-image"></i>
+                <Flex>
+                  <Button
+                    onClick={() => createNewRecipe()}
+                    width="100px"
+                    height="40px"
+                    fontSize="10px"
+                    color="white"
+                    disabled={emptyFields}
+                  >
+                    Create new Recipe
+                  </Button>
+                </Flex>
+              </form>
+            </Flex>
+            <Flex padding="10px" align="center" direction="column">
+              <Flex gap="10px" align="center" direction="row">
+                <Title color="white" fontSize="30px">
+                  Your recipe image preview:
+                </Title>
+                <Button
+                  onClick={() =>
+                    setImgPreview((prev) => ({
+                      ...prev,
+                      isActive: !prev.isActive,
+                    }))
+                  }
+                  width="40px"
+                  height="40px"
+                  fontSize="20px"
+                >
+                  {imgPreview.isActive ? (
+                    <i
+                      style={{ color: "white" }}
+                      className="fa-solid fa-eye-slash"
+                    ></i>
+                  ) : (
+                    <i
+                      style={{ color: "white" }}
+                      className="fa-solid fa-eye"
+                    ></i>
+                  )}
                 </Button>
               </Flex>
-            </Flex>
-            <Flex>
-              <Button
-                onClick={() => createNewRecipe()}
-                width="100px"
-                height="40px"
-                fontSize="10px"
-              >
-                Create new Recipe
-              </Button>
-            </Flex>
-          </form>
-        </Flex>
-        <Flex padding="10px" align="center" direction="column">
-          <Flex gap="10px" align="center" direction="row">
-            <Title fontSize="30px">Your recipe image preview:</Title>
-            <Button
-              onClick={() =>
-                setImgPreview((prev) => ({ ...prev, isActive: !prev.isActive }))
-              }
-              width="40px"
-              height="40px"
-              fontSize="20px"
-            >
-              {imgPreview.isActive ? (
-                <i className="fa-solid fa-eye-slash"></i>
-              ) : (
-                <i className="fa-solid fa-eye"></i>
-              )}
-            </Button>
-          </Flex>
 
-          {imgPreview.isActive && (
-            <Image
-              radius="10px"
-              width={"350px"}
-              height={"300px"}
-              src={
-                imgPreview.previewURL
-                  ? imgPreview.previewURL
-                  : "/placeholder.jpg"
-              }
-            />
-          )}
+              {imgPreview.isActive && (
+                <Image
+                  radius="10px"
+                  width={"350px"}
+                  height={"300px"}
+                  src={
+                    imgPreview.previewURL
+                      ? imgPreview.previewURL
+                      : "/placeholder.jpg"
+                  }
+                />
+              )}
+            </Flex>
+          </Flex>
         </Flex>
       </Flex>
     </Wrapper>

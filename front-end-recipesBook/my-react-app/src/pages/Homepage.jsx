@@ -64,7 +64,7 @@ export const Homepage = () => {
   };
 
   return (
-    <Wrapper background="#E7D4B5">
+    <Wrapper background="transparent">
       <Flex
         padding="20px"
         align="center"
@@ -72,17 +72,14 @@ export const Homepage = () => {
         height="100px"
         gap="20px"
       >
-        <Title fontSize="50px">RecipesBook</Title>
+        <Title color="white" fontSize="50px">
+          RecipesBook
+        </Title>
         <Image radius="50%" src="/cook.jpg" height={"100%"} />
       </Flex>
       <Navbar />
-      <Filters
-        setRecipes={setFiltered}
-        cousines={recipesDetails.cuisines}
-        difficulties={recipesDetails.difficulties}
-        diets={recipesDetails.diets}
-      />
-      <Flex>
+
+      <Flex margin="100px 0 0 0">
         <Flex
           radius="10px"
           padding="10px"
@@ -90,6 +87,7 @@ export const Homepage = () => {
           width="80%"
           direction="column"
           height="100%"
+          minHeight="800px"
         >
           <Title fontSize="30px">
             Check out the latest recipes from our Community!
@@ -105,19 +103,21 @@ export const Homepage = () => {
             </Paragraph>
           )}
         </Flex>
-        <Flex width="20%"></Flex>
+        <Flex width="20%">
+          <Filters
+            setRecipes={setFiltered}
+            cousines={recipesDetails.cuisines}
+            difficulties={recipesDetails.difficulties}
+            diets={recipesDetails.diets}
+          />
+        </Flex>
       </Flex>
 
       <Flex padding="10px" justify="center">
-        {/* to fix on pageEnd */}
-        {/* {recipesPage !== 3 && (
-          <Button fontSize="15px" padding="10px" onClick={onLoadMore}>
-            Load More
-          </Button>
-        )} */}
         {
           (totalPages = new Array(totalPages).fill(null).map((_, index) => (
             <Button
+              color="white"
               width="30px"
               height="30px"
               radius="50%"
