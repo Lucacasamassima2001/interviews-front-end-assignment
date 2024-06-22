@@ -64,14 +64,19 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
   };
 
   return (
-    <Wrapper margin="100px 0 0 0" background="#E7D4B5">
+    <Wrapper
+      width="80%"
+      height="870px"
+      borderRadius="10px"
+      background={showFilters ? "#E7D4B5" : "transparent"}
+    >
       <Flex align="center" padding="10px" direction="column">
         {showFilters && (
           <Flex
+            animation="slideFromTop"
             padding="10px"
             gap="10px"
             width="85%"
-            height="500px"
             direction="row"
             wrap="wrap"
             justify="center"
@@ -85,19 +90,14 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                 height="40px"
                 fontSize="20px"
                 placeholder="Recipe name..."
+                padding="10px"
               />
             </Flex>
             <Flex direction="column">
-              <Label align="center" fontSize="20px">
+              <Label fontWeight="bold" align="center" fontSize="20px">
                 Cuisines:
               </Label>
-              <Flex
-                width="600px"
-                justify="center"
-                wrap="wrap"
-                gap="10px"
-                align="baseline"
-              >
+              <Flex justify="center" wrap="wrap" gap="10px" align="baseline">
                 {cousines.map((cousine) => (
                   <Button
                     selected={searchData.cousine === cousine.id}
@@ -105,9 +105,9 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                     value={cousine.id}
                     onClick={handleFiltersChange}
                     key={cousine.id}
-                    width="150px"
+                    width="100px"
                     height="40px"
-                    fontSize="20px"
+                    fontSize="15px"
                   >
                     {cousine.name}
                   </Button>
@@ -115,16 +115,10 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
               </Flex>
             </Flex>
             <Flex direction="column">
-              <Label align="center" fontSize="20px">
+              <Label fontWeight="bold" align="center" fontSize="20px">
                 Difficulty:
               </Label>
-              <Flex
-                width="600px"
-                justify="center"
-                wrap="wrap"
-                gap="10px"
-                align="baseline"
-              >
+              <Flex justify="center" wrap="wrap" gap="10px" align="baseline">
                 {difficulties.map((difficulty) => (
                   <Button
                     selected={searchData.difficulty === difficulty.id}
@@ -134,7 +128,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                     key={difficulty.id}
                     width="100px"
                     height="40px"
-                    fontSize="20px"
+                    fontSize="15px"
                   >
                     {difficulty.name}
                   </Button>
@@ -142,16 +136,10 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
               </Flex>
             </Flex>
             <Flex direction="column">
-              <Label align="center" fontSize="20px">
+              <Label fontWeight="bold" align="center" fontSize="20px">
                 Diets:
               </Label>
-              <Flex
-                width="600px"
-                justify="center"
-                wrap="wrap"
-                gap="10px"
-                align="baseline"
-              >
+              <Flex justify="center" wrap="wrap" gap="10px" align="baseline">
                 {diets.map((diet) => (
                   <Button
                     selected={searchData.diet === diet.id}
@@ -161,7 +149,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                     key={diet.id}
                     width="200px"
                     height="40px"
-                    fontSize="20px"
+                    fontSize="15px"
                   >
                     {diet.name}
                   </Button>
@@ -188,9 +176,18 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
             </Flex>
           </Flex>
         )}
-        <Flex margin="10px 0 0 0" gap="5px" align="baseline">
-          <Title fontSize="30px">{showFilters ? "Hide" : "Open"} Filters</Title>
+        <Flex
+          background={!showFilters ? "#E7D4B5" : "transparent"}
+          gap="5px"
+          align="baseline"
+          radius="10px"
+          padding="10px"
+        >
+          <Title color="#74512d" fontSize="30px">
+            {showFilters ? "Hide" : "Open"} Filters
+          </Title>
           <Button
+            color="white"
             width="40px"
             height="40px"
             fontSize="20px"
@@ -199,12 +196,12 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
             {showFilters ? (
               <i
                 style={{ color: "#74512d" }}
-                className="fa-solid fa-arrow-up"
+                className="fa-solid fa-arrow-left"
               ></i>
             ) : (
               <i
                 style={{ color: "#74512d" }}
-                className="fa-solid fa-arrow-down"
+                className="fa-solid fa-arrow-right"
               ></i>
             )}
           </Button>

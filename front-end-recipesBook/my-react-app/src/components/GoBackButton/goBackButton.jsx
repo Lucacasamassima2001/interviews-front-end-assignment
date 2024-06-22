@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import Button from "../../UI/Button/button";
 import { useNavigate } from "react-router-dom";
-export const GoBackButton = () => {
+export const GoBackButton = ({ color }) => {
   const navigate = useNavigate();
   const onGoBack = () => {
     navigate(-1);
@@ -8,7 +9,10 @@ export const GoBackButton = () => {
 
   return (
     <Button onClick={onGoBack}>
-      <i style={{ color: "#74512d" }} className="fa-solid fa-arrow-left"></i>
+      <i
+        style={{ color: color ? color : "#74512d" }}
+        className="fa-solid fa-arrow-left"
+      ></i>
     </Button>
   );
 };
