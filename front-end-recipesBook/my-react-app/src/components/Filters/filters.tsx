@@ -97,6 +97,12 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
             <Flex direction="column" align="baseline" gap="10px">
               <Label fontSize="20px">Search by name:</Label>
               <Input
+                // on key press enter search
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    searchFilteredRecipes();
+                  }
+                }}
                 name="name"
                 onChange={handleFiltersChange}
                 width="250px"
