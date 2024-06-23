@@ -8,6 +8,10 @@ export interface FlexProps {
   align?: string;
   gap?: string;
   position?: string;
+  top?: string;
+  left?: string;
+  right?: string;
+  bottom?: string;
   padding?: string;
   wrap?: string;
   border?: string;
@@ -26,6 +30,10 @@ const Flex = styled.div<FlexProps>`
   align-items: ${(props) => props.align};
   gap: ${(props) => props.gap || "none"};
   position: ${(props) => props.position || "none"};
+  top: ${(props) => props.top || "none"};
+  left: ${(props) => props.left || "none"};
+  right: ${(props) => props.right || "none"};
+  bottom: ${(props) => props.bottom || "none"};
   padding: ${(props) => props.padding};
   flex-wrap: ${(props) => props.wrap || "nowrap"};
   border: ${(props) => props.border || "none"};
