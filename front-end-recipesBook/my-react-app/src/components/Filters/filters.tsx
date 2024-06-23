@@ -79,8 +79,8 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
   return (
     <Wrapper
       width="80%"
-      height="900px"
-      borderRadius="10px"
+      radius="10px"
+      height="1150px"
       background={showFilters ? "#E7D4B5" : "transparent"}
     >
       <Flex align="center" padding="10px" direction="column">
@@ -88,7 +88,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
           <Flex
             animation="slideFromTop"
             padding="10px"
-            gap="10px"
+            gap="40px"
             width="85%"
             direction="row"
             wrap="wrap"
@@ -99,7 +99,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
               <Input
                 name="name"
                 onChange={handleFiltersChange}
-                width="300px"
+                width="250px"
                 height="40px"
                 fontSize="20px"
                 placeholder="Recipe name..."
@@ -152,7 +152,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
               <Label fontWeight="bold" align="center" fontSize="20px">
                 Diets:
               </Label>
-              <Flex wrap="wrap" gap="10px" align="baseline">
+              <Flex wrap="wrap" gap="10px" align="baseline" justify="center">
                 {diets.map((diet) => (
                   <Button
                     selected={searchData.diet === diet.id}
@@ -174,21 +174,23 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                 onClick={() => searchFilteredRecipes()}
                 width="150px"
                 height="40px"
-                fontSize="20px"
-                activeColor="#74512d"
-                activeTextColor="white"
+                fontSize="30px"
               >
-                Search
+                <i
+                  style={{ color: "#74512d" }}
+                  className="fa-brands fa-searchengin"
+                ></i>
               </Button>
               <Button
                 onClick={() => resetFilters()}
                 width="150px"
                 height="40px"
                 fontSize="20px"
-                activeColor="#74512d"
-                activeTextColor="white"
               >
-                Clear Filters
+                <i
+                  style={{ color: "#74512d" }}
+                  className="fa-solid fa-arrows-rotate"
+                ></i>
               </Button>
             </Flex>
           </Flex>

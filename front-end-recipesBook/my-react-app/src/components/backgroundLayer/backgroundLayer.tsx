@@ -6,7 +6,7 @@ export interface BackgroundLayerProps {
   position?: string;
   background?: string;
   zIndex?: string;
-  borderRadius?: string;
+  radius?: string;
 }
 
 const BackgroundLayer = styled.div<BackgroundLayerProps>`
@@ -16,7 +16,7 @@ const BackgroundLayer = styled.div<BackgroundLayerProps>`
   top: 0;
   background-color: ${(props) => props.background || "rgba(0, 0, 0, 0.5)"};
   z-index: ${(props) => props.zIndex || "9"};
-  border-radius: ${(props) => props.borderRadius || "none"};
+  border-radius: ${(props) => props.radius || "none"};
 `;
 
 export default BackgroundLayer;

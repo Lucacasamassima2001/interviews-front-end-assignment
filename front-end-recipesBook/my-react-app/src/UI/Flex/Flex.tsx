@@ -2,7 +2,7 @@ import styled from "styled-components";
 export interface FlexProps {
   width?: string;
   height?: string;
-  minHeight?: string;
+  minheight?: string;
   direction?: string;
   justify?: string;
   align?: string;
@@ -19,7 +19,7 @@ export interface FlexProps {
 const Flex = styled.div<FlexProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  min-height: ${(props) => props.minHeight};
+  min-height: ${(props) => props.minheight};
   display: flex;
   flex-direction: ${(props) => props.direction};
   justify-content: ${(props) => props.justify};

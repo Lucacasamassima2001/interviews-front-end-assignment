@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useEffect, useState, useRef } from "react";
 import Input from "../UI/Input/input.tsx";
 import Label from "../UI/Input/label.tsx";
@@ -324,7 +323,7 @@ export const AddRecipe = () => {
                     height="40px"
                     fontSize="20px"
                     color="white"
-                    hoverTextDecoration="underline"
+                    hovertextdecoration="underline"
                     disabled={emptyFields}
                   >
                     Create new Recipe

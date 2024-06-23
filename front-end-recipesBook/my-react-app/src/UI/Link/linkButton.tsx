@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 export interface LinkButtonProps {
   width?: string;
   height?: string;
-  borderRadius?: string;
+  radius?: string;
   bgColor?: string;
   color?: string;
   textsize?: string;
@@ -19,7 +19,7 @@ export interface LinkButtonProps {
 const LinkButton = styled(Link)<LinkButtonProps>`
   width: ${(props) => props.width || "100px"};
   height: ${(props) => props.height || "40px"};
-  border-radius: ${(props) => props.borderRadius || "10px"};
+  border-radius: ${(props) => props.radius || "10px"};
   background-color: ${(props) => props.bgColor || "transparent"};
   color: ${(props) => props.color || "black"};
   font-size: ${(props) => props.textsize || "20px"};

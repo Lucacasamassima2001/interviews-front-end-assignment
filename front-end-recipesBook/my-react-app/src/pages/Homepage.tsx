@@ -87,7 +87,7 @@ export const Homepage = () => {
       </Flex>
       <Navbar />
 
-      <Flex gap="100px" margin="100px 0 0 0">
+      <Flex gap="10px" margin="100px 0 0 0">
         <Flex
           radius="10px"
           padding="10px"
@@ -95,7 +95,7 @@ export const Homepage = () => {
           width="80%"
           direction="column"
           height="100%"
-          minHeight="800px"
+          minheight="800px"
         >
           <Title fontSize="30px">
             Check out the latest recipes from our Community!
@@ -127,7 +127,7 @@ export const Homepage = () => {
             color="white"
             width="30px"
             height="30px"
-            borderRadius="50%"
+            radius="50%"
             selected={recipesPage === index + 1}
             key={index}
             fontSize="15px"
