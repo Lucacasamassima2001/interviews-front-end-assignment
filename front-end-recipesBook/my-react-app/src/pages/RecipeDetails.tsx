@@ -35,7 +35,6 @@ export const RecipeDetails = () => {
   const [hover, setHover] = useState(null as number | null);
   // eslint-disable-next-line no-unused-vars
   let totalStars = 5;
-  console.log(recipeData);
   const path = window.location.pathname.split("/");
   useEffect(() => {
     // fetch data from id in the path

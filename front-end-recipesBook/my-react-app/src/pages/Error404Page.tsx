@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import Paragraph from "../UI/paragraph/paragraph.tsx";
 import Title from "../UI/titles/title.tsx";

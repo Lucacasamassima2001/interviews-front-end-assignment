@@ -2,7 +2,7 @@ import styled from "styled-components";
 export interface InputProps {
   width?: string;
   height?: string;
-  borderRadius?: string;
+  radius?: string;
   backgroundColor?: string;
   color?: string;
   fontSize?: string;
@@ -12,7 +12,7 @@ export interface InputProps {
 const Input = styled.input<InputProps>`
   width: ${(props) => props.width || "100px"};
   height: ${(props) => props.height || "30px"};
-  border-radius: ${(props) => props.borderRadius || "10px"};
+  border-radius: ${(props) => props.radius || "10px"};
   background-color: ${(props) => props.backgroundColor || "#74512D"};
   color: ${(props) => props.color || "white"};
   font-size: ${(props) => props.fontSize || "15px"};

@@ -12,7 +12,7 @@ export const About = () => {
     <Wrapper background="transparent" padding="10px 0 0 0">
       <GoBackButton color="white" />
       <Flex padding="10px" position="relative" justify="center" height="90%">
-        <BackgroundLayer width="70%" borderRadius="10px">
+        <BackgroundLayer width="70%" radius="10px">
           <Flex direction="column" align="center">
             <Title color="white" fontStyle="italic" aligntext="center">
               Know more about RecipesBook!

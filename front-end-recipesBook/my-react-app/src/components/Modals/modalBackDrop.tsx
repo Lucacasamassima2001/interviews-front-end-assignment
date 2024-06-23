@@ -1,4 +1,3 @@
-import { Interface } from "readline";
 import styled from "styled-components";
 
 interface ModalBackDropProps {

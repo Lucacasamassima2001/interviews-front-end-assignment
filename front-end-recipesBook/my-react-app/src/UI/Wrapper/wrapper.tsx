@@ -6,7 +6,7 @@ export interface WrapperProps {
   padding?: string;
   margin?: string;
   backgroundImage?: string;
-  borderRadius?: string;
+  radius?: string;
 }
 const Wrapper = styled.div<WrapperProps>`
   width: ${(props) => props.width};
@@ -17,7 +17,7 @@ const Wrapper = styled.div<WrapperProps>`
   margin: ${(props) => props.margin || "none"};
   background-repeat: no-repeat;
   background-image: ${(props) => props.backgroundImage || "none"};
-  border-radius: ${(props) => props.borderRadius || "0"};
+  border-radius: ${(props) => props.radius || "0"};
 `;
 
 export default Wrapper;
