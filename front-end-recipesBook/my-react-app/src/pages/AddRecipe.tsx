@@ -10,7 +10,8 @@ import Wrapper from "../UI/Wrapper/wrapper.tsx";
 import Image from "../UI/image/Image.tsx";
 import Modal from "../components/Modals/Modal.tsx";
 import React from "react";
-
+import Dropzone from "react-dropzone";
+import Paragraph from "../UI/paragraph/paragraph.tsx";
 export const AddRecipe = () => {
   const [recipesDetails, setRecipesDetails] = useState({
     cuisines: [],
@@ -35,7 +36,13 @@ export const AddRecipe = () => {
     ingredients: [],
     image: null,
   });
-  const [imgPreview, setImgPreview] = useState({
+  console.log(recipeData);
+  interface imgPreviewProps {
+    previewURL: string | null;
+    isActive: boolean;
+  }
+
+  const [imgPreview, setImgPreview] = useState<imgPreviewProps>({
     previewURL: null,
     isActive: false,
   });
@@ -165,7 +172,7 @@ export const AddRecipe = () => {
           radius="10px"
         >
           <Flex padding="10px" gap="50px" direction="row">
-            <Flex direction="column">
+            <Flex position="relative" direction="column">
               <Title color="white">Add Recipe</Title>
               <form onSubmit={(e) => e.preventDefault()}>
                 <Flex direction="column" gap="10px">
@@ -314,14 +321,17 @@ export const AddRecipe = () => {
                         className="fa-solid fa-image"
                       ></i>
                     </Button>
+                    <Paragraph color="white">
+                      Choose an image or drag and drop on preview!
+                    </Paragraph>
                   </Flex>
                 </Flex>
-                <Flex>
+                <Flex position="absolute" right="20%" bottom="0">
                   <Button
                     onClick={() => createNewRecipe()}
-                    width="180px"
+                    width="300px"
                     height="40px"
-                    fontSize="20px"
+                    fontSize="30px"
                     color="white"
                     hovertextdecoration="underline"
                     disabled={emptyFields}
@@ -362,16 +372,49 @@ export const AddRecipe = () => {
               </Flex>
 
               {imgPreview.isActive && (
-                <Image
-                  radius="10px"
-                  width={"350px"}
-                  height={"300px"}
-                  src={
-                    imgPreview.previewURL
-                      ? imgPreview.previewURL
-                      : "/placeholder.jpg"
-                  }
-                />
+                <Dropzone
+                  onDrop={(acceptedFiles) => {
+                    setImgPreview((prev) => ({
+                      ...prev,
+                      previewURL:
+                        acceptedFiles.length > 0
+                          ? URL.createObjectURL(acceptedFiles[0])
+                          : null,
+                    }));
+
+                    setRecipeData((prev) => ({
+                      ...prev,
+                      image: acceptedFiles[0],
+                    }));
+                  }}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <section>
+                      <div
+                        style={{
+                          width: "350px",
+                          height: "300px",
+                        }}
+                        {...getRootProps()}
+                      >
+                        <input {...getInputProps()} />
+                        <Image
+                          radius="10px"
+                          border="3px solid black"
+                          width={"100%"}
+                          height={"100%"}
+                          top="0"
+                          left="0"
+                          src={
+                            imgPreview.previewURL
+                              ? imgPreview.previewURL
+                              : "/drag-drop.jpg"
+                          }
+                        />
+                      </div>
+                    </section>
+                  )}
+                </Dropzone>
               )}
             </Flex>
           </Flex>
