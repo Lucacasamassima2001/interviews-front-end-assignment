@@ -13,7 +13,12 @@ import React from "react";
 import Dropzone from "react-dropzone";
 import Paragraph from "../UI/paragraph/paragraph.tsx";
 export const AddRecipe = () => {
-  const [recipesDetails, setRecipesDetails] = useState({
+  interface recipesDetails {
+    cuisines: any[];
+    difficulties: any[];
+    diets: any[];
+  }
+  const [recipesDetails, setRecipesDetails] = useState<recipesDetails>({
     cuisines: [],
     difficulties: [],
     diets: [],
@@ -47,7 +52,10 @@ export const AddRecipe = () => {
     isActive: false,
   });
   const [emptyFields, setEmptyFields] = useState(true);
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState({
+    attempt: false,
+    success: false,
+  });
   const imgRef = useRef<HTMLInputElement>(null);
   const dialog = useRef(null);
   useEffect(() => {
@@ -152,17 +160,23 @@ export const AddRecipe = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setSuccess(true);
+        setSuccess((prev) => ({ ...prev, attempt: true, success: true }));
         (dialog.current as any)?.open();
       })
       .catch((error) => {
-        console.error(error);
+        setSuccess((prev) => ({ ...prev, attempt: true, success: false }));
+        console.log(success);
+        dialog.current?.open();
       });
   };
   return (
     <Wrapper background="transparent">
       <GoBackButton color="white" />
-      <Modal isOpen={success} isSuccess={success} ref={dialog} />
+      <Modal
+        isOpen={success.attempt}
+        isSuccess={success.success}
+        ref={dialog}
+      />
       <Flex justify="center">
         <Flex
           background="rgba(0, 0, 0, 0.5)"

@@ -30,7 +30,7 @@ const Modal = forwardRef<{ open: () => void }, ModalProps>(function Modal(
     dialog.current?.close();
     navigate("/Homepage");
   };
-
+  console.log(isSuccess);
   return createPortal(
     <ModalBackDrop isOpen={isOpen} onClick={closeModal}>
       <dialog ref={dialog}>
@@ -41,7 +41,9 @@ const Modal = forwardRef<{ open: () => void }, ModalProps>(function Modal(
               : "It wasnt't possible to create recipe!"}
           </Title>
           <Paragraph fontSize="20px" margin="0 0 50px 0" aligntext="center">
-            Your recipe has been created successfully!
+            {isSuccess
+              ? "Your recipe has been created successfully!"
+              : "Unforunately it was not possible to create your recipe"}
           </Paragraph>
         </Wrapper>
         <Flex justify="center">
