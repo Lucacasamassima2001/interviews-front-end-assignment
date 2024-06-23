@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
-import Flex from "../UI/Flex/Flex";
-import Title from "../UI/titles/title";
-import Image from "../UI/image/Image";
-import Paragraph from "../UI/paragraph/paragraph";
-import Label from "../UI/Input/label";
-import Wrapper from "../UI/Wrapper/wrapper";
-import List from "../UI/List/list";
-import ListItem from "../UI/List/listItem";
-import { Review } from "../components/Reviews/review";
-import { GoBackButton } from "../components/GoBackButton/goBackButton";
-import Input from "../UI/Input/input";
-import Button from "../UI/Button/button";
+import Flex from "../UI/Flex/Flex.tsx";
+import Title from "../UI/titles/title.tsx";
+import Image from "../UI/image/Image.tsx";
+import Paragraph from "../UI/paragraph/paragraph.tsx";
+import Label from "../UI/Input/label.tsx";
+import Wrapper from "../UI/Wrapper/wrapper.tsx";
+import List from "../UI/List/list.tsx";
+import ListItem from "../UI/List/listItem.tsx";
+import { Review } from "../components/Reviews/review.tsx";
+import { GoBackButton } from "../components/GoBackButton/goBackButton.tsx";
+import Input from "../UI/Input/input.tsx";
+import Button from "../UI/Button/button.tsx";
 import "../index.css";
-import { Error404Page } from "./Error404Page";
+import { Error404Page } from "./Error404Page.tsx";
+import React from "react";
 export const RecipeDetails = () => {
-  const [recipeData, setRecipeData] = useState({});
+  interface RecipeData {
+    data: any;
+    comments: any;
+  }
+  const [recipeData, setRecipeData] = useState<RecipeData>({
+    data: {},
+    comments: [],
+  });
   const [notFound, setNotFound] = useState(false);
   const currentDate = new Date();
   const utcDate = currentDate.toISOString().split("T")[0] + "T00:00:00.000Z";
@@ -23,7 +31,8 @@ export const RecipeDetails = () => {
     rating: 0,
     date: utcDate,
   });
-  const [hover, setHover] = useState(null);
+
+  const [hover, setHover] = useState(null as number | null);
   // eslint-disable-next-line no-unused-vars
   let totalStars = 5;
   console.log(recipeData);

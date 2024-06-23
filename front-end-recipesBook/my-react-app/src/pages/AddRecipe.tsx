@@ -1,19 +1,33 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState, useRef } from "react";
-import Input from "../UI/Input/input";
-import Label from "../UI/Input/label";
-import Flex from "../UI/Flex/Flex";
-import Button from "../UI/Button/button";
-import Title from "../UI/titles/title";
-import { GoBackButton } from "../components/GoBackButton/goBackButton";
-import TextArea from "../UI/Input/textarea";
-import Wrapper from "../UI/Wrapper/wrapper";
-import Image from "../UI/image/Image";
-import Modal from "../components/Modals/Modal";
+import Input from "../UI/Input/input.tsx";
+import Label from "../UI/Input/label.tsx";
+import Flex from "../UI/Flex/Flex.tsx";
+import Button from "../UI/Button/button.tsx";
+import Title from "../UI/titles/title.tsx";
+import { GoBackButton } from "../components/GoBackButton/goBackButton.tsx";
+import TextArea from "../UI/Input/textarea.tsx";
+import Wrapper from "../UI/Wrapper/wrapper.tsx";
+import Image from "../UI/image/Image.tsx";
+import Modal from "../components/Modals/Modal.tsx";
+import React from "react";
 
 export const AddRecipe = () => {
-  const [recipesDetails, setRecipesDetails] = useState({});
-  const [recipeData, setRecipeData] = useState({
+  const [recipesDetails, setRecipesDetails] = useState({
+    cuisines: [],
+    difficulties: [],
+    diets: [],
+  });
+  interface RecipeData {
+    name: string;
+    instructions: string;
+    cuisineId: string;
+    difficultyId: string;
+    dietId: string;
+    ingredients: string[];
+    image: any;
+  }
+  const [recipeData, setRecipeData] = useState<RecipeData>({
     name: "",
     instructions: "",
     cuisineId: "",
@@ -28,7 +42,7 @@ export const AddRecipe = () => {
   });
   const [emptyFields, setEmptyFields] = useState(true);
   const [success, setSuccess] = useState(false);
-  const imgRef = useRef(null);
+  const imgRef = useRef<HTMLInputElement>(null);
   const dialog = useRef(null);
   useEffect(() => {
     // fetch cousines
@@ -93,7 +107,7 @@ export const AddRecipe = () => {
     reader.readAsDataURL(imageFile);
 
     reader.addEventListener("load", () => {
-      setImgPreview((prev) => ({
+      setImgPreview((prev: any) => ({
         ...prev,
         previewURL: reader.result,
       }));
@@ -102,8 +116,7 @@ export const AddRecipe = () => {
 
   const createNewRecipe = () => {
     // transforming ingredients from object to array and pushing every value
-    const ingredientsArray = [];
-    // eslint-disable-next-line no-unused-vars
+    const ingredientsArray: string[] = [];
     for (const [key, value] of Object.entries(recipeData.ingredients)) {
       ingredientsArray.push(value);
     }
@@ -134,7 +147,7 @@ export const AddRecipe = () => {
       .then((data) => {
         console.log(data);
         setSuccess(true);
-        dialog.current.open();
+        (dialog.current as any)?.open();
       })
       .catch((error) => {
         console.error(error);
@@ -143,7 +156,7 @@ export const AddRecipe = () => {
   return (
     <Wrapper background="transparent">
       <GoBackButton color="white" />
-      <Modal isSuccess={success} ref={dialog} />
+      <Modal isOpen={success} isSuccess={success} ref={dialog} />
       <Flex justify="center">
         <Flex
           background="rgba(0, 0, 0, 0.5)"
@@ -185,7 +198,6 @@ export const AddRecipe = () => {
                       onChange={handleRecipeChange}
                       id="instructions"
                       name="instructions"
-                      type="textarea"
                       value={recipeData.instructions}
                       placeholder="Your Recipe instructions..."
                     />
@@ -195,7 +207,7 @@ export const AddRecipe = () => {
                       Cuisine:
                     </Label>
                     <Flex>
-                      {recipesDetails.cuisines?.map((cousine) => (
+                      {recipesDetails.cuisines?.map((cousine: any) => (
                         <Button
                           color="white"
                           selected={recipeData.cuisineId === cousine.id}
@@ -218,7 +230,7 @@ export const AddRecipe = () => {
                       Difficulty:
                     </Label>
                     <Flex>
-                      {recipesDetails.difficulties?.map((difficulty) => (
+                      {recipesDetails.difficulties?.map((difficulty: any) => (
                         <Button
                           color="white"
                           selected={recipeData.difficultyId === difficulty.id}
@@ -241,7 +253,7 @@ export const AddRecipe = () => {
                       Diets:
                     </Label>
                     <Flex>
-                      {recipesDetails.diets?.map((diet) => (
+                      {recipesDetails.diets?.map((diet: any) => (
                         <Button
                           selected={recipeData.dietId === diet.id}
                           name="dietId"
@@ -296,7 +308,7 @@ export const AddRecipe = () => {
                     />
                     <Button
                       fontSize="30px"
-                      onClick={() => imgRef.current.click()}
+                      onClick={() => imgRef.current?.click()}
                     >
                       <i
                         style={{ color: "white" }}

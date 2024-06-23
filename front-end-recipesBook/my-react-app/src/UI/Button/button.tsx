@@ -1,6 +1,24 @@
 import styled from "styled-components";
 
-const Button = styled.button`
+export interface ButtonProps {
+  width?: string;
+  height?: string;
+  borderRadius?: string;
+  bgColor?: string;
+  color?: string;
+  fontSize?: string;
+  selected?: boolean;
+  border?: string;
+  padding?: string;
+  hoverColor?: string;
+  hoverTextColor?: string;
+  disabled?: boolean;
+  hoverTextDecoration?: string;
+  activeColor?: string;
+  activeTextColor?: string;
+}
+
+const Button = styled.button<ButtonProps>`
   width: ${(props) => props.width || "100px"};
   height: ${(props) => props.height || "40px"};
   border-radius: ${(props) => props.borderRadius || "10px"};
@@ -14,7 +32,7 @@ const Button = styled.button`
   align-items: center;
   border: ${(props) => props.border || "none"};
   padding: ${(props) => props.padding || "0"};
-  disabled: ${(props) => props.disabled || "false"};
+  disabled: (props) => props.disabled || false;
   &:hover {
     background-color: ${(props) => props.hoverColor || "none"};
     color: ${(props) => props.hoverTextColor || "none"};

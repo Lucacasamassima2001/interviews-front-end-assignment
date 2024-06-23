@@ -1,5 +1,6 @@
-import Flex from "../../UI/Flex/Flex";
-import Paragraph from "../../UI/paragraph/paragraph";
+import React from "react";
+import Flex from "../../UI/Flex/Flex.tsx";
+import Paragraph from "../../UI/paragraph/paragraph.tsx";
 
 /* eslint-disable react/prop-types */
 export const Review = ({ review }) => {

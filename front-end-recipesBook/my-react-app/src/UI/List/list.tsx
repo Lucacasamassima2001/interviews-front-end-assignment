@@ -1,6 +1,12 @@
 import styled from "styled-components";
-
-const List = styled.ul`
+export interface ListProps {
+  liststyle?: string;
+  wrap?: string;
+  direction?: string;
+  gap?: string;
+  width?: string;
+}
+const List = styled.ul<ListProps>`
   list-style: ${(props) => props.liststyle || "none"};
   display: flex;
   flex-wrap: ${(props) => props.wrap || "nowrap"};

@@ -1,7 +1,22 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
-const LinkButton = styled(Link)`
+export interface LinkButtonProps {
+  width?: string;
+  height?: string;
+  borderRadius?: string;
+  bgColor?: string;
+  color?: string;
+  textsize?: string;
+  margin?: string;
+  border?: string;
+  padding?: string;
+  position?: string;
+  top?: string;
+  left?: string;
+  right?: string;
+  bottom?: string;
+}
+const LinkButton = styled(Link)<LinkButtonProps>`
   width: ${(props) => props.width || "100px"};
   height: ${(props) => props.height || "40px"};
   border-radius: ${(props) => props.borderRadius || "10px"};

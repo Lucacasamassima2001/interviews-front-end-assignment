@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
-import Button from "../../UI/Button/button";
+import React from "react";
+import Button from "../../UI/Button/button.tsx";
 import { useNavigate } from "react-router-dom";
 export const GoBackButton = ({ color }) => {
   const navigate = useNavigate();

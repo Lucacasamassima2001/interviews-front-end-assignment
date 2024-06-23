@@ -1,6 +1,22 @@
 import styled from "styled-components";
-
-const Flex = styled.div`
+export interface FlexProps {
+  width?: string;
+  height?: string;
+  minHeight?: string;
+  direction?: string;
+  justify?: string;
+  align?: string;
+  gap?: string;
+  position?: string;
+  padding?: string;
+  wrap?: string;
+  border?: string;
+  radius?: string;
+  background?: string;
+  margin?: string;
+  animation?: string;
+}
+const Flex = styled.div<FlexProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   min-height: ${(props) => props.minHeight};

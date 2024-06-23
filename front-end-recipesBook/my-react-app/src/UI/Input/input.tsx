@@ -1,9 +1,18 @@
 import styled from "styled-components";
-
-const TextArea = styled.textarea`
+export interface InputProps {
+  width?: string;
+  height?: string;
+  borderRadius?: string;
+  backgroundColor?: string;
+  color?: string;
+  fontSize?: string;
+  border?: string;
+  padding?: string;
+}
+const Input = styled.input<InputProps>`
   width: ${(props) => props.width || "100px"};
   height: ${(props) => props.height || "30px"};
-  border-radius: ${(props) => props.radius || "10px"};
+  border-radius: ${(props) => props.borderRadius || "10px"};
   background-color: ${(props) => props.backgroundColor || "#74512D"};
   color: ${(props) => props.color || "white"};
   font-size: ${(props) => props.fontSize || "15px"};
@@ -13,8 +22,8 @@ const TextArea = styled.textarea`
   border: ${(props) => props.border || "none"};
   padding: ${(props) => props.padding || "5"};
   &::placeholder {
-    color: white;
+    color: lightgrey;
   }
 `;
 
-export default TextArea;
+export default Input;
