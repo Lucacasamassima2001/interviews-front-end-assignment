@@ -1,14 +1,15 @@
-import Title from "../UI/titles/title";
-import Flex from "../UI/Flex/Flex";
-import Image from "../UI/image/Image";
-import Paragraph from "../UI/paragraph/paragraph";
-import LinkButton from "../UI/Link/linkButton";
-import Wrapper from "../UI/Wrapper/wrapper";
-import BackgroundLayer from "../components/backgroundLayer/backgroundLayer";
+import Title from "../UI/titles/title.tsx";
+import Flex from "../UI/Flex/Flex.tsx";
+import Image from "../UI/image/Image.tsx";
+import Paragraph from "../UI/paragraph/paragraph.tsx";
+import LinkButton from "../UI/Link/linkButton.tsx";
+import Wrapper from "../UI/Wrapper/wrapper.tsx";
+import BackgroundLayer from "../components/backgroundLayer/backgroundLayer.tsx";
+import React from "react";
 function App() {
   return (
     <>
-      <Wrapper position="relative" height="100vh" background="transparent">
+      <Wrapper height="100vh" background="transparent">
         <BackgroundLayer position="absolute" height="100%">
           <Flex
             width="100%"
@@ -34,7 +35,7 @@ function App() {
                 radius="50%"
               />
               <Title color="white">Welcome to RecipesBook</Title>
-              <Paragraph color="white" fontSize="30px">
+              <Paragraph aligntext="center" color="white" fontSize="30px">
                 The place for all your recipes
               </Paragraph>
               <LinkButton

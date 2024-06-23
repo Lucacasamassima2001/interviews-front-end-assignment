@@ -1,15 +1,23 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import Title from "../../UI/titles/title";
-import Button from "../../UI/Button/button";
-import Flex from "../../UI/Flex/Flex";
-import Input from "../../UI/Input/input";
-import Label from "../../UI/Input/label";
-import Wrapper from "../../UI/Wrapper/wrapper";
+import Title from "../../UI/titles/title.tsx";
+import Button from "../../UI/Button/button.tsx";
+import Flex from "../../UI/Flex/Flex.tsx";
+import Input from "../../UI/Input/input.tsx";
+import Label from "../../UI/Input/label.tsx";
+import Wrapper from "../../UI/Wrapper/wrapper.tsx";
+import React from "react";
 
 export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
   const [showFilters, setShowFilters] = useState(false);
-  const [searchData, setSearchData] = useState({
+
+  interface searchDataProps {
+    name: string;
+    cousine: string;
+    difficulty: string;
+    diet: string;
+  }
+  const [searchData, setSearchData] = useState<searchDataProps>({
     name: "",
     cousine: "",
     difficulty: "",
@@ -21,7 +29,12 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
   };
   const searchFilteredRecipes = async () => {
     let url = "http://localhost:8080/recipes";
-    let params = [];
+    let params = [
+      searchData.name ? `name_like=${searchData.name}` : "",
+      searchData.cousine ? `cuisineId=${searchData.cousine}` : "",
+      searchData.difficulty ? `difficultyId=${searchData.difficulty}` : "",
+      searchData.diet ? `dietId=${searchData.diet}` : "",
+    ];
 
     if (searchData.name) {
       params.push(`name_like=${searchData.name}`);
@@ -156,7 +169,7 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
                 ))}
               </Flex>
             </Flex>
-            <Flex gap="10px" alig="baseline" justify="center">
+            <Flex gap="10px" align="baseline" justify="center">
               <Button
                 onClick={() => searchFilteredRecipes()}
                 width="150px"
@@ -200,12 +213,12 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
             {showFilters ? (
               <i
                 style={{ color: "#74512d" }}
-                className="fa-solid fa-arrow-left"
+                className="fa-solid fa-arrow-up"
               ></i>
             ) : (
               <i
                 style={{ color: "#74512d" }}
-                className="fa-solid fa-arrow-right"
+                className="fa-solid fa-arrow-down"
               ></i>
             )}
           </Button>

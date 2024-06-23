@@ -1,6 +1,14 @@
 import styled from "styled-components";
-
-const Wrapper = styled.div`
+export interface WrapperProps {
+  width?: string;
+  height?: string;
+  background?: string;
+  padding?: string;
+  margin?: string;
+  backgroundImage?: string;
+  borderRadius?: string;
+}
+const Wrapper = styled.div<WrapperProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   background-color: ${(props) => props.background || "white"};

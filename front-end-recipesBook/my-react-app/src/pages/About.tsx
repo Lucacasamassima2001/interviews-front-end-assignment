@@ -1,10 +1,11 @@
-import Flex from "../UI/Flex/Flex";
-import Wrapper from "../UI/Wrapper/wrapper";
-import Image from "../UI/image/Image";
-import Paragraph from "../UI/paragraph/paragraph";
-import Title from "../UI/titles/title";
-import { GoBackButton } from "../components/GoBackButton/goBackButton";
-import BackgroundLayer from "../components/backgroundLayer/backgroundLayer";
+import React from "react";
+import Flex from "../UI/Flex/Flex.tsx";
+import Wrapper from "../UI/Wrapper/wrapper.tsx";
+import Image from "../UI/image/Image.tsx";
+import Paragraph from "../UI/paragraph/paragraph.tsx";
+import Title from "../UI/titles/title.tsx";
+import { GoBackButton } from "../components/GoBackButton/goBackButton.tsx";
+import BackgroundLayer from "../components/backgroundLayer/backgroundLayer.tsx";
 
 export const About = () => {
   return (

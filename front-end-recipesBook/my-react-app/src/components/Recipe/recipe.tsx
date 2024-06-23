@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
-import Flex from "../../UI/Flex/Flex";
-import LinkButton from "../../UI/Link/linkButton";
-import List from "../../UI/List/list";
-import ListItem from "../../UI/List/listItem";
-import Image from "../../UI/image/Image";
-import Paragraph from "../../UI/paragraph/paragraph";
-import Title from "../../UI/titles/title";
+import React from "react";
+import Flex from "../../UI/Flex/Flex.tsx";
+import LinkButton from "../../UI/Link/linkButton.tsx";
+import List from "../../UI/List/list.tsx";
+import ListItem from "../../UI/List/listItem.tsx";
+import Image from "../../UI/image/Image.tsx";
+import Paragraph from "../../UI/paragraph/paragraph.tsx";
+import Title from "../../UI/titles/title.tsx";
 
 export const RecipeItem = ({ recipe }) => {
   return (

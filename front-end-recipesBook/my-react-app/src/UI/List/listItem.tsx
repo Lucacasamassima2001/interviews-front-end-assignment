@@ -1,6 +1,9 @@
 import styled from "styled-components";
-
-const ListItem = styled.li`
+export interface ListItemProps {
+  color?: string;
+  fontSize?: string;
+}
+const ListItem = styled.li<ListItemProps>`
   color: ${(props) => props.color || "black"};
   font-size: ${(props) => props.fontSize || "20px"};
 `;

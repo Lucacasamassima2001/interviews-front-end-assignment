@@ -1,6 +1,15 @@
 import styled from "styled-components";
 
-const BackgroundLayer = styled.div`
+export interface BackgroundLayerProps {
+  width?: string;
+  height?: string;
+  position?: string;
+  background?: string;
+  zIndex?: string;
+  borderRadius?: string;
+}
+
+const BackgroundLayer = styled.div<BackgroundLayerProps>`
   width: ${(props) => props.width || "100%"};
   height: ${(props) => props.height};
   position: ${(props) => props.position};

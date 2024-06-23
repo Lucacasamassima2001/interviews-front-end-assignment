@@ -1,6 +1,15 @@
 import styled from "styled-components";
-
-const Paragraph = styled.p`
+export interface ParagraphProps {
+  color?: string;
+  fontSize?: string;
+  aligntext?: string;
+  fontWeight?: string;
+  fontStyle?: string;
+  width?: string;
+  margin?: string;
+  animation?: string;
+}
+const Paragraph = styled.p<ParagraphProps>`
   color: ${(props) => props.color || "black"};
   font-size: ${(props) => props.fontSize || "20px"};
   text-align: ${(props) => (props.aligntext ? props.aligntext : "left")};

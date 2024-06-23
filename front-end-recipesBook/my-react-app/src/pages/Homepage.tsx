@@ -1,19 +1,29 @@
-import Wrapper from "../UI/Wrapper/wrapper";
+import Wrapper from "../UI/Wrapper/wrapper.tsx";
 import { useEffect, useState } from "react";
-import { Navbar } from "../components/NavBar/navbar";
-import { Filters } from "../components/Filters/filters";
-import Title from "../UI/titles/title";
-import Flex from "../UI/Flex/Flex";
-import { RecipeItem } from "../components/Recipe/recipe";
-import Button from "../UI/Button/button";
-import Image from "../UI/image/Image";
-import Paragraph from "../UI/paragraph/paragraph";
+import { Navbar } from "../components/NavBar/navbar.tsx";
+import { Filters } from "../components/Filters/filters.tsx";
+import Title from "../UI/titles/title.tsx";
+import Flex from "../UI/Flex/Flex.tsx";
+import { RecipeItem } from "../components/Recipe/recipe.tsx";
+import Button from "../UI/Button/button.tsx";
+import Image from "../UI/image/Image.tsx";
+import Paragraph from "../UI/paragraph/paragraph.tsx";
+import React from "react";
 
 export const Homepage = () => {
   const [recipes, setRecipes] = useState([]);
   const [recipesPage, setRecipesPage] = useState(1);
-  // eslint-disable-next-line no-unused-vars
-  const [recipesDetails, setRecipesDetails] = useState({});
+  interface RecipesDetails {
+    cuisines: any[];
+    difficulties: any[];
+    diets: any[];
+  }
+
+  const [recipesDetails, setRecipesDetails] = useState<RecipesDetails>({
+    cuisines: [],
+    difficulties: [],
+    diets: [],
+  });
   const recipesPerPage = 10;
   let totalPages = Math.ceil(recipes.length / recipesPerPage);
   const startIndex = (recipesPage - 1) * recipesPerPage;
@@ -91,7 +101,7 @@ export const Homepage = () => {
             Check out the latest recipes from our Community!
           </Title>
           <Flex direction="row" gap="100px" wrap="wrap">
-            {recipes.slice(startIndex, endIndex).map((recipe) => (
+            {recipes.slice(startIndex, endIndex).map((recipe: any) => (
               <RecipeItem key={recipe.id} recipe={recipe} />
             ))}
           </Flex>
@@ -112,23 +122,21 @@ export const Homepage = () => {
       </Flex>
 
       <Flex padding="10px" justify="center">
-        {
-          (totalPages = new Array(totalPages).fill(null).map((_, index) => (
-            <Button
-              color="white"
-              width="30px"
-              height="30px"
-              radius="50%"
-              selected={recipesPage === index + 1}
-              key={index}
-              fontSize="15px"
-              padding="5px"
-              onClick={() => setRecipesPage(index + 1)}
-            >
-              {index + 1}
-            </Button>
-          )))
-        }
+        {Array.from({ length: totalPages }, (_, index) => (
+          <Button
+            color="white"
+            width="30px"
+            height="30px"
+            borderRadius="50%"
+            selected={recipesPage === index + 1}
+            key={index}
+            fontSize="15px"
+            padding="5px"
+            onClick={() => setRecipesPage(index + 1)}
+          >
+            {index + 1}
+          </Button>
+        ))}
       </Flex>
     </Wrapper>
   );

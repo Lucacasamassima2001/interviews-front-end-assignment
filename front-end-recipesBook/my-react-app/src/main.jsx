@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Welcome from "./App/Welcome";
-import { Homepage } from "./pages/Homepage";
-import { AddRecipe } from "./pages/AddRecipe";
-import { RecipeDetails } from "./pages/RecipeDetails";
-import { About } from "./pages/About";
-import { Error404Page } from "./pages/Error404Page";
+import Welcome from "./App/Welcome.tsx";
+import { Homepage } from "./pages/Homepage.tsx";
+import { AddRecipe } from "./pages/AddRecipe.tsx";
+import { RecipeDetails } from "./pages/RecipeDetails.tsx";
+import { About } from "./pages/About.tsx";
+import { Error404Page } from "./pages/Error404Page.tsx";
 const router = createBrowserRouter([
   {
     path: "/",

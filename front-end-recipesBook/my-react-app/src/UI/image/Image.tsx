@@ -1,6 +1,11 @@
 import styled from "styled-components";
-
-const Image = styled.img`
+export interface ImageProps {
+  width?: string;
+  height?: string;
+  radius?: string;
+  src?: string;
+}
+const Image = styled.img<ImageProps>`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: ${(props) => props.radius || "none"};
