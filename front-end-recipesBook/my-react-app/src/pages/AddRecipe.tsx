@@ -166,7 +166,7 @@ export const AddRecipe = () => {
       .catch((error) => {
         setSuccess((prev) => ({ ...prev, attempt: true, success: false }));
         console.log(success);
-        dialog.current?.open();
+        (dialog.current as any)?.open();
       });
   };
   return (
