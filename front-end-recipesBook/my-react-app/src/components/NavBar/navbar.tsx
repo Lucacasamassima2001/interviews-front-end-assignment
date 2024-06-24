@@ -31,7 +31,7 @@ export const Navbar = () => {
           textsize="40px"
           to="/create-recipe"
         >
-          Add you recipe
+          Add your recipe
         </LinkButton>
       </Flex>
     </>

@@ -7,6 +7,42 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cb74bb8453d70173733c9ae166d9db4a.cdn.bubble.io/f1718856280387x157167907700763700/chatbot.css"
+    />
+    <style>
+      #chatbot-toggle {
+        background-color: #7e3710; /* Default color, can be overridden */
+      }
+    </style>
+    <button id="chatbot-toggle" onclick="toggleChatbot()">💬</button>
+
+    <script src="https://cb74bb8453d70173733c9ae166d9db4a.cdn.bubble.io/f1718755475175x239237956795653950/chatbot.js"></script>
+    <script>
+      // Override the default color if needed
+      document.getElementById("chatbot-toggle").style.backgroundColor =
+        "#7e3710"; // Set your desired color
+
+      // Function to toggle the chatbot
+      function toggleChatbot() {
+        var iframe = document.getElementById("chatbot-iframe");
+        if (!iframe) {
+          // Create the iframe if it doesn't exist
+          iframe = document.createElement("iframe");
+          iframe.id = "chatbot-iframe";
+          iframe.src =
+            "https://usefulchatbot.com/chatbot/olqtof8nnyoeuatmldudir1j";
+          iframe.style.display = "none";
+          document.body.appendChild(iframe);
+        }
+        // Toggle the display property
+        iframe.style.display =
+          iframe.style.display === "none" || iframe.style.display === ""
+            ? "block"
+            : "none";
+      }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RecipesBook</title>
   </head>
