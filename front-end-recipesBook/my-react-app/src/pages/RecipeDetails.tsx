@@ -31,7 +31,12 @@ export const RecipeDetails = () => {
     rating: 0,
     date: utcDate,
   });
+  let totalRating = recipeData.comments.reduce(
+    (acc, comment) => acc + comment.rating,
+    0
+  );
 
+  let averageRating = totalRating / recipeData.comments.length;
   const [hover, setHover] = useState(null as number | null);
   // eslint-disable-next-line no-unused-vars
   let totalStars = 5;
@@ -92,16 +97,24 @@ export const RecipeDetails = () => {
     };
     fetchComments();
   };
-
+  console.log(averageRating);
   return (
     <>
       {!notFound ? (
         <Wrapper padding="10px" background="rgba(0, 0, 0, 0.5)">
           <GoBackButton color="white" />
           <Flex direction="column" gap="10px" align="center">
-            <Title color="white" width="100%" aligntext="center">
-              {recipeData.data?.name}
-            </Title>
+            <Flex direction="row" align="baseline" gap="10px">
+              <Title color="white" width="100%" aligntext="center">
+                {recipeData.data?.name}
+              </Title>
+
+              {Array.from({ length: averageRating }, (_, index) => (
+                <span style={{ color: "yellow", fontSize: "50px" }} key={index}>
+                  &#9733;
+                </span>
+              ))}
+            </Flex>
             <Image
               radius="20px"
               width="800px"
