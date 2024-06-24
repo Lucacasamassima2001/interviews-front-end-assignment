@@ -70,6 +70,7 @@ export const Homepage = () => {
   }, []);
   const setFiltered = (recipes) => {
     setRecipes(recipes);
+    recipesPage === 1 ? setRecipesPage(1) : setRecipesPage(1);
   };
   return (
     <Wrapper background="rgb(0, 0, 0, 0.3)">
