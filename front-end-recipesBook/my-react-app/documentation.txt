@@ -41,7 +41,7 @@ The friendly ai-chatbot is here to answer users basic needs to prevent any conce
 
 Responsive:
 
-This project has been developed in order to look responsive from basic hd (1920x1080) and beyond.
+This project has been developed in order to look responsive in mobile versions and desktop.
 
 ///
 

@@ -7,10 +7,11 @@ import Input from "../../UI/Input/input.tsx";
 import Label from "../../UI/Input/label.tsx";
 import Wrapper from "../../UI/Wrapper/wrapper.tsx";
 import React from "react";
+import useMediaQuery from "../../Hooks/UseMediaQuery.tsx";
 
 export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
   const [showFilters, setShowFilters] = useState(false);
-
+  const { isMobile } = useMediaQuery();
   interface searchDataProps {
     name: string;
     cousine: string;
@@ -78,9 +79,9 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
 
   return (
     <Wrapper
-      width="80%"
+      width={isMobile ? "100%" : "80%"}
       radius="10px"
-      height="1150px"
+      height={isMobile ? "auto" : "1150px"}
       background={showFilters ? "#E7D4B5" : "transparent"}
     >
       <Flex align="center" padding="10px" direction="column">
@@ -206,16 +207,16 @@ export const Filters = ({ setRecipes, cousines, difficulties, diets }) => {
           gap="5px"
           align="baseline"
           radius="10px"
-          padding="10px"
+          padding={isMobile ? "5px" : "10px"}
         >
-          <Title color="#74512d" fontSize="30px">
+          <Title color="#74512d" fontSize={isMobile ? "15px" : "30px"}>
             {showFilters ? "Hide" : "Open"} Filters
           </Title>
           <Button
             color="white"
-            width="40px"
-            height="40px"
-            fontSize="20px"
+            width={isMobile ? "10px" : "40px"}
+            height={isMobile ? "10px" : "40px"}
+            fontSize={isMobile ? "15px" : "20px"}
             onClick={() => setShowFilters(!showFilters)}
           >
             {showFilters ? (

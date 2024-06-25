@@ -9,8 +9,10 @@ import Button from "../UI/Button/button.tsx";
 import Image from "../UI/image/Image.tsx";
 import Paragraph from "../UI/paragraph/paragraph.tsx";
 import React from "react";
+import useMediaQuery from "../Hooks/UseMediaQuery.tsx";
 
 export const Homepage = () => {
+  const { isMobile } = useMediaQuery();
   const [recipes, setRecipes] = useState([]);
   const [recipesPage, setRecipesPage] = useState(1);
   interface RecipesDetails {
@@ -81,27 +83,45 @@ export const Homepage = () => {
         height="100px"
         gap="20px"
       >
-        <Title color="white" fontSize="50px">
+        <Title color="white" fontSize={isMobile ? "30px" : "50px"}>
           RecipesBook
         </Title>
         <Image radius="50%" src="/cook.jpg" height={"100%"} />
       </Flex>
       <Navbar />
-
-      <Flex gap="10px" margin="100px 0 0 0">
+      {isMobile && (
+        <Flex>
+          <Filters
+            setRecipes={setFiltered}
+            cousines={recipesDetails.cuisines}
+            difficulties={recipesDetails.difficulties}
+            diets={recipesDetails.diets}
+          />
+        </Flex>
+      )}
+      <Flex
+        direction="row"
+        gap="10px"
+        margin={isMobile ? "20px 0 0 0 " : "100px 0 0 0"}
+      >
         <Flex
           radius="10px"
           padding="10px"
           background="#F6E6CB"
-          width="80%"
+          width={isMobile ? "none" : "80%"}
           direction="column"
           height="100%"
           minheight="800px"
         >
-          <Title fontSize="30px">
+          <Title fontSize={isMobile ? "20px" : "30px"}>
             Check out the latest recipes from our Community!
           </Title>
-          <Flex direction="row" gap="100px" wrap="wrap">
+          <Flex
+            justify={isMobile ? "center" : "none"}
+            direction="row"
+            gap="100px"
+            wrap="wrap"
+          >
             {recipes.slice(startIndex, endIndex).map((recipe: any) => (
               <RecipeItem key={recipe.id} recipe={recipe} />
             ))}
@@ -112,14 +132,16 @@ export const Homepage = () => {
             </Paragraph>
           )}
         </Flex>
-        <Flex width="20%">
-          <Filters
-            setRecipes={setFiltered}
-            cousines={recipesDetails.cuisines}
-            difficulties={recipesDetails.difficulties}
-            diets={recipesDetails.diets}
-          />
-        </Flex>
+        {!isMobile && (
+          <Flex width="20%">
+            <Filters
+              setRecipes={setFiltered}
+              cousines={recipesDetails.cuisines}
+              difficulties={recipesDetails.difficulties}
+              diets={recipesDetails.diets}
+            />
+          </Flex>
+        )}
       </Flex>
 
       <Flex padding="10px" justify="center">
