@@ -6,7 +6,7 @@ import LinkButton from "../UI/Link/linkButton.tsx";
 import Wrapper from "../UI/Wrapper/wrapper.tsx";
 import BackgroundLayer from "../components/backgroundLayer/backgroundLayer.tsx";
 import React from "react";
-function App() {
+function Welcome() {
   return (
     <>
       <Wrapper height="100vh" background="transparent">
@@ -34,7 +34,9 @@ function App() {
                 height="200px"
                 radius="50%"
               />
-              <Title color="white">Welcome to RecipesBook</Title>
+              <Title aligntext="center" color="white">
+                Welcome to RecipesBook
+              </Title>
               <Paragraph aligntext="center" color="white" fontSize="30px">
                 The place for all your recipes
               </Paragraph>
@@ -55,4 +57,4 @@ function App() {
   );
 }
 
-export default App;
+export default Welcome;
