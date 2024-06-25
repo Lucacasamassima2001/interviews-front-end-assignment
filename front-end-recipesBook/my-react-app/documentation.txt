@@ -1,0 +1,68 @@
+*Languages:
+
+This app has been written with React/typescript.
+
+///
+
+*Libraries:
+
+In order to create new functions to the app and for a better organization, this project works with this libraries:
+
+React-styled-component: To have greater order in the jsx and have the possibility of reusing predominant and redundant components in the code making them customizable. https://styled-components.com/docs
+
+React-drop-zone: A library that allows users to drag and drop images/files/videos to an input area instead of following the same procedure by a standard input. https://react-dropzone.js.org/#section-examples
+
+React-router-dom: A decision taken to allow the project not to get tired with database calls and state changes at too high levels that could influence and burden navigation. https://reactrouter.com/en/main
+
+///
+
+*Colours-palette:
+
+The coloring and design patterns of the project took inspiration from color palettes and layout styles of popular recipes sites
+
+Primary-colours(
+    black: #000000;
+    brown: #74512d;
+)
+
+Secondary-colours(
+    white: #FFFFFF;
+    cream: #F6E6CB;
+)
+
+///
+
+*AI-ChatBot:
+
+The friendly ai-chatbot is here to answer users basic needs to prevent any concers about app functions.
+(It's a free ai, it needs a text of instructions to work properly that now it's very limited but it will be expanded in future.)
+
+///
+
+Responsive:
+
+This project has been developed in order to look responsive from basic hd (1920x1080) and beyond.
+
+///
+
+Modal: 
+
+A customizable modal has been added, now is setted to show up only on success or failure when adding a new recipe. <Modal />
+
+///
+
+ErrorPages:
+
+Customizable Pages on events like wrong or unexisting path or data not found. <Error404Page />
+
+
+
+
+
+
+
+
+
+
+
+

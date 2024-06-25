@@ -38,7 +38,6 @@ export const RecipeDetails = () => {
 
   let averageRating = totalRating / recipeData.comments.length;
   const [hover, setHover] = useState(null as number | null);
-  // eslint-disable-next-line no-unused-vars
   let totalStars = 5;
   const path = window.location.pathname.split("/");
   useEffect(() => {
@@ -97,7 +96,6 @@ export const RecipeDetails = () => {
     };
     fetchComments();
   };
-  console.log(averageRating);
   return (
     <>
       {!notFound ? (
