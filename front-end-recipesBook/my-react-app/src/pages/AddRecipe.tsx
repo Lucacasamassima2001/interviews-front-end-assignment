@@ -12,7 +12,9 @@ import Modal from "../components/Modals/Modal.tsx";
 import React from "react";
 import Dropzone from "react-dropzone";
 import Paragraph from "../UI/paragraph/paragraph.tsx";
+import useMediaQuery from "../Hooks/UseMediaQuery.tsx";
 export const AddRecipe = () => {
+  const { isMobile } = useMediaQuery();
   interface recipesDetails {
     cuisines: any[];
     difficulties: any[];
@@ -177,7 +179,7 @@ export const AddRecipe = () => {
         isSuccess={success.success}
         ref={dialog}
       />
-      <Flex justify="center">
+      <Flex justify={isMobile ? "none" : "center"}>
         <Flex
           background="rgba(0, 0, 0, 0.5)"
           padding="10px"
@@ -185,8 +187,16 @@ export const AddRecipe = () => {
           height="90%"
           radius="10px"
         >
-          <Flex padding="10px" gap="50px" direction="row">
-            <Flex position="relative" direction="column">
+          <Flex
+            padding="10px"
+            gap="50px"
+            direction={isMobile ? "column" : "row"}
+          >
+            <Flex
+              align={isMobile ? "center" : "none"}
+              position="relative"
+              direction="column"
+            >
               <Title color="white">Add Recipe</Title>
               <form onSubmit={(e) => e.preventDefault()}>
                 <Flex direction="column" gap="10px">
@@ -195,7 +205,7 @@ export const AddRecipe = () => {
                       Name
                     </Label>
                     <Input
-                      width={"900px"}
+                      width={isMobile ? "300px" : "900px"}
                       padding="10px"
                       fontSize="20px"
                       onChange={handleRecipeChange}
@@ -211,7 +221,7 @@ export const AddRecipe = () => {
                       Instructions
                     </Label>
                     <TextArea
-                      width={"900px"}
+                      width={isMobile ? "300px" : "900px"}
                       padding="10px"
                       fontSize="20px"
                       height="200px"
@@ -222,11 +232,11 @@ export const AddRecipe = () => {
                       placeholder="Your Recipe instructions..."
                     />
                   </Flex>
-                  <Flex direction="column">
+                  <Flex align={isMobile ? "center" : "none"} direction="column">
                     <Label color="white" fontSize="30px">
                       Cuisine:
                     </Label>
-                    <Flex>
+                    <Flex wrap="wrap">
                       {recipesDetails.cuisines?.map((cousine: any) => (
                         <Button
                           color="white"
@@ -245,11 +255,11 @@ export const AddRecipe = () => {
                       ))}
                     </Flex>
                   </Flex>
-                  <Flex direction="column">
+                  <Flex align={isMobile ? "center" : "none"} direction="column">
                     <Label color="white" fontSize="30px">
                       Difficulty:
                     </Label>
-                    <Flex>
+                    <Flex wrap="wrap">
                       {recipesDetails.difficulties?.map((difficulty: any) => (
                         <Button
                           color="white"
@@ -268,11 +278,11 @@ export const AddRecipe = () => {
                       ))}
                     </Flex>
                   </Flex>
-                  <Flex direction="column">
+                  <Flex align={isMobile ? "center" : "none"} direction="column">
                     <Label color="white" fontSize="30px">
                       Diets:
                     </Label>
-                    <Flex>
+                    <Flex justify={isMobile ? "center" : "none"} wrap="wrap">
                       {recipesDetails.diets?.map((diet: any) => (
                         <Button
                           selected={recipeData.dietId === diet.id}
@@ -291,11 +301,17 @@ export const AddRecipe = () => {
                       ))}
                     </Flex>
                   </Flex>
-                  <Flex direction="column">
+                  <Flex align={isMobile ? "center" : "none"} direction="column">
                     <Label color="white" fontSize="30px">
                       Ingredients:
                     </Label>
-                    <Flex margin="10px" width="600px" wrap="wrap" gap="10px">
+                    <Flex
+                      justify={isMobile ? "center" : "none"}
+                      margin="10px"
+                      width={isMobile ? "300px" : "600px"}
+                      wrap="wrap"
+                      gap="10px"
+                    >
                       {[...Array(5)].map((_, index) => (
                         <Input
                           key={index}
@@ -340,24 +356,26 @@ export const AddRecipe = () => {
                     </Paragraph>
                   </Flex>
                 </Flex>
-                <Flex position="absolute" right="20%" bottom="0">
-                  <Button
-                    onClick={() => createNewRecipe()}
-                    width="300px"
-                    height="40px"
-                    fontSize="30px"
-                    color="white"
-                    hovertextdecoration="underline"
-                    disabled={emptyFields}
-                  >
-                    Create new Recipe
-                  </Button>
-                </Flex>
+                {!isMobile && (
+                  <Flex position="absolute" right="20%" bottom="0">
+                    <Button
+                      onClick={() => createNewRecipe()}
+                      width="300px"
+                      height="40px"
+                      fontSize="30px"
+                      color="white"
+                      hovertextdecoration="underline"
+                      disabled={emptyFields}
+                    >
+                      Create new Recipe
+                    </Button>
+                  </Flex>
+                )}
               </form>
             </Flex>
             <Flex padding="10px" align="center" direction="column">
               <Flex gap="10px" align="center" direction="row">
-                <Title color="white" fontSize="30px">
+                <Title fontSize={isMobile ? "20px" : "30px"} color="white">
                   Your recipe image preview:
                 </Title>
                 <Button
@@ -406,8 +424,8 @@ export const AddRecipe = () => {
                     <section>
                       <div
                         style={{
-                          width: "350px",
-                          height: "300px",
+                          width: isMobile ? "250px" : "300px",
+                          height: isMobile ? "250px" : "300px",
                         }}
                         {...getRootProps()}
                       >
@@ -431,6 +449,21 @@ export const AddRecipe = () => {
                 </Dropzone>
               )}
             </Flex>
+            {isMobile && (
+              <Flex>
+                <Button
+                  onClick={() => createNewRecipe()}
+                  width="300px"
+                  height="40px"
+                  fontSize="30px"
+                  color="white"
+                  hovertextdecoration="underline"
+                  disabled={emptyFields}
+                >
+                  Create new Recipe
+                </Button>
+              </Flex>
+            )}
           </Flex>
         </Flex>
       </Flex>

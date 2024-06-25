@@ -14,7 +14,9 @@ import Button from "../UI/Button/button.tsx";
 import "../index.css";
 import { Error404Page } from "./Error404Page.tsx";
 import React from "react";
+import useMediaQuery from "../Hooks/UseMediaQuery.tsx";
 export const RecipeDetails = () => {
+  const { isMobile } = useMediaQuery();
   interface RecipeData {
     data: any;
     comments: any;
@@ -103,27 +105,38 @@ export const RecipeDetails = () => {
           <GoBackButton color="white" />
           <Flex direction="column" gap="10px" align="center">
             <Flex direction="row" align="baseline" gap="10px">
-              <Title color="white" width="100%" aligntext="center">
+              <Title
+                fontSize={isMobile ? "25px" : "50px"}
+                color="white"
+                width="100%"
+                aligntext="center"
+              >
                 {recipeData.data?.name}
               </Title>
 
               {Array.from({ length: averageRating }, (_, index) => (
-                <span style={{ color: "yellow", fontSize: "50px" }} key={index}>
+                <span
+                  style={{
+                    color: "yellow",
+                    fontSize: isMobile ? "15px" : "50px",
+                  }}
+                  key={index}
+                >
                   &#9733;
                 </span>
               ))}
             </Flex>
             <Image
               radius="20px"
-              width="800px"
-              height="800px"
+              width={isMobile ? "100%" : "800px"}
+              height={isMobile ? "100%" : "800px"}
               src={`/server${recipeData.data?.image}`}
             />
           </Flex>
 
           <Flex
             margin="100px 0 0 0"
-            direction="row"
+            direction={isMobile ? "column" : "row"}
             gap="150px"
             justify="center"
             align="baseline"
@@ -151,9 +164,18 @@ export const RecipeDetails = () => {
                 <Label color="white" fontSize="40px">
                   Ingredients:
                 </Label>
-                <List direction="column" liststyle="circle">
+                <List
+                  width={isMobile ? "300px" : "800px"}
+                  direction="column"
+                  liststyle="circle"
+                >
                   {recipeData.data?.ingredients?.map((ingredient) => (
-                    <ListItem color="white" fontSize="30px" key={ingredient}>
+                    <ListItem
+                      width={isMobile ? "300px" : "800px"}
+                      color="white"
+                      fontSize="30px"
+                      key={ingredient}
+                    >
                       {ingredient}
                     </ListItem>
                   ))}
@@ -162,18 +184,26 @@ export const RecipeDetails = () => {
             </Flex>
             <Flex direction="column">
               {recipeData.comments?.length > 0 ? (
-                <Flex direction="column" gap="10px">
+                <Flex
+                  align={isMobile ? "center" : "none"}
+                  direction="column"
+                  gap="10px"
+                >
                   <Title color="white" fontSize="40px">
                     Comments:
                   </Title>
                   <List
-                    width="800px"
+                    width={isMobile ? "300px" : "800px"}
                     direction="row"
                     liststyle="none"
                     wrap="wrap"
                   >
                     {recipeData.comments?.map((comment) => (
-                      <ListItem fontSize="30px" key={comment.id}>
+                      <ListItem
+                        width={"300px"}
+                        fontSize="30px"
+                        key={comment.id}
+                      >
                         <Review review={comment} />
                       </ListItem>
                     ))}
@@ -184,8 +214,12 @@ export const RecipeDetails = () => {
                   No comments yet
                 </Paragraph>
               )}
-              <Flex width="100%" direction="column">
-                <Title color="white" fontSize="40px">
+              <Flex
+                align={isMobile ? "center" : "none"}
+                width="100%"
+                direction="column"
+              >
+                <Title color="white" fontSize={isMobile ? "35px" : "40px"}>
                   Rate this recipe:
                 </Title>
                 <form onSubmit={(e) => e.preventDefault()}>
@@ -209,6 +243,7 @@ export const RecipeDetails = () => {
                         <span
                           className="star"
                           style={{
+                            fontSize: isMobile ? "25px" : "40px",
                             color:
                               currentRating <= (hover || newComment.rating)
                                 ? "#ffc107"
@@ -222,11 +257,15 @@ export const RecipeDetails = () => {
                       </label>
                     );
                   })}
-                  <Flex gap="10px" align="center">
+                  <Flex
+                    gap="10px"
+                    align="center"
+                    direction={isMobile ? "column" : "row"}
+                  >
                     <Input
                       type="text"
-                      width="600px"
-                      fontSize="30px"
+                      width={isMobile ? "300px" : "600px"}
+                      fontSize={isMobile ? "15px" : "30px"}
                       padding="10px"
                       height={"50px"}
                       placeholder="Add a comment"
@@ -241,7 +280,7 @@ export const RecipeDetails = () => {
                     />
                     <Button
                       border="2px solid #74512d"
-                      height="65px"
+                      height={isMobile ? "40px" : "65px"}
                       padding="10px"
                       onClick={() => onCreatingReview()}
                       disabled={!newComment.comment}

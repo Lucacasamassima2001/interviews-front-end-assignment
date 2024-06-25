@@ -7,21 +7,28 @@ import ListItem from "../../UI/List/listItem.tsx";
 import Image from "../../UI/image/Image.tsx";
 import Paragraph from "../../UI/paragraph/paragraph.tsx";
 import Title from "../../UI/titles/title.tsx";
-
+import useMediaQuery from "../../Hooks/UseMediaQuery.tsx";
 export const RecipeItem = ({ recipe }) => {
+  const { isMobile } = useMediaQuery();
   return (
     <>
-      <Flex position="relative" radius="10px" width="900px" direction="row">
+      <Flex
+        position="relative"
+        radius="10px"
+        width={isMobile ? "300px" : "900px"}
+        height={isMobile ? "750px" : "none"}
+        direction={isMobile ? "column" : "row"}
+      >
         <Flex>
           <Image
             radius="10px"
-            width="500px"
-            height="450px"
+            width={isMobile ? "300px" : "500px"}
+            height={isMobile ? "300px" : "450px"}
             src={`/server${recipe.image}`}
           />
         </Flex>
         <Flex
-          width="500px"
+          width={isMobile ? "300px" : "500px"}
           height="100%"
           direction="column"
           gap="10px"
@@ -30,10 +37,19 @@ export const RecipeItem = ({ recipe }) => {
           <Title fontWeight="bold" fontSize="25px">
             {recipe.name}
           </Title>
-          <Paragraph>{recipe.instructions}</Paragraph>
-          <List liststyle="circle" direction="column" gap="10px">
+          <Paragraph fontSize={isMobile ? "15px" : "20px"}>
+            {recipe.instructions}
+          </Paragraph>
+          <List
+            width={isMobile ? "200px" : "500px"}
+            liststyle="circle"
+            direction="column"
+            gap="10px"
+          >
             {recipe.ingredients.map((ingredient) => (
-              <ListItem key={ingredient}>{ingredient}</ListItem>
+              <ListItem width={isMobile ? "200px" : "500px"} key={ingredient}>
+                {ingredient}
+              </ListItem>
             ))}
           </List>
           <Flex justify="center">

@@ -7,6 +7,7 @@ import Paragraph from "../../UI/paragraph/paragraph.tsx";
 import Button from "../../UI/Button/button.tsx";
 import Flex from "../../UI/Flex/Flex.tsx";
 import { ModalBackDrop } from "./modalBackDrop.jsx";
+import useMediaQuery from "../../Hooks/UseMediaQuery.tsx";
 
 interface ModalProps {
   isOpen: boolean;
@@ -31,10 +32,16 @@ const Modal = forwardRef<{ open: () => void }, ModalProps>(function Modal(
     navigate("/Homepage");
   };
   console.log(isSuccess);
+  const { isMobile } = useMediaQuery();
+
   return createPortal(
     <ModalBackDrop isOpen={isOpen} onClick={closeModal}>
       <dialog ref={dialog}>
-        <Wrapper width="450px" height="200px" padding="20px">
+        <Wrapper
+          width={isMobile ? "none" : "450px"}
+          height="200px"
+          padding="20px"
+        >
           <Title fontSize="30px" margin="0 0 50px 0" aligntext="center">
             {isSuccess
               ? "Congratulations!"
