@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from "react";
 import Flex from "../../UI/Flex/Flex.tsx";
 import LinkButton from "../../UI/Link/linkButton.tsx";

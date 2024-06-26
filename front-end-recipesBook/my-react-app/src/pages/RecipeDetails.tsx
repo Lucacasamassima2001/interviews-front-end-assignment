@@ -20,19 +20,29 @@ export const RecipeDetails = () => {
   interface RecipeData {
     data: any;
     comments: any;
+    notFound: boolean;
   }
+
+  interface NewComment {
+    comment: string;
+    rating: number;
+    date: string;
+  }
+
   const [recipeData, setRecipeData] = useState<RecipeData>({
     data: {},
     comments: [],
+    notFound: false,
   });
-  const [notFound, setNotFound] = useState(false);
   const currentDate = new Date();
   const utcDate = currentDate.toISOString().split("T")[0] + "T00:00:00.000Z";
-  const [newComment, setNewComment] = useState({
+  const [newComment, setNewComment] = useState<NewComment>({
     comment: "",
     rating: 0,
     date: utcDate,
   });
+
+  // get total rating of recipe
   let totalRating = recipeData.comments.reduce(
     (acc, comment) => acc + comment.rating,
     0
@@ -48,11 +58,11 @@ export const RecipeDetails = () => {
       .then((response) => response.json())
       .then((data) => {
         setRecipeData((prev) => ({ ...prev, data: data }));
-        setNotFound(false);
+        setRecipeData((prev) => ({ ...prev, notFound: false }));
       })
       .catch((error) => {
         console.error(error);
-        setNotFound(true);
+        setRecipeData((prev) => ({ ...prev, notFound: true }));
       });
 
     // fetch comments of recipe
@@ -67,6 +77,7 @@ export const RecipeDetails = () => {
       });
   }, []);
 
+  // function to create a new review
   const onCreatingReview = async () => {
     const response = await fetch(
       `http://localhost:8080/recipes/${path[2]}/comments`,
@@ -86,6 +97,7 @@ export const RecipeDetails = () => {
       date: utcDate,
     });
 
+    // function to fetch recipe's comments
     const fetchComments = () => {
       fetch(`http://localhost:8080/recipes/${path[2]}/comments`)
         .then((response) => response.json())
@@ -100,7 +112,7 @@ export const RecipeDetails = () => {
   };
   return (
     <>
-      {!notFound ? (
+      {!recipeData.notFound ? (
         <Wrapper padding="10px" background="rgba(0, 0, 0, 0.5)">
           <GoBackButton color="white" />
           <Flex direction="column" gap="10px" align="center">

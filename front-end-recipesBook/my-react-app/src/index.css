@@ -1,3 +1,4 @@
+/* Review score stars system  */
 input[type="radio"] {
   display: none;
 }
@@ -6,6 +7,8 @@ input[type="radio"] {
   font-size: 3rem;
   margin: 5px;
 }
+
+/* body reset */
 
 body {
   height: 100%;
