@@ -43,7 +43,6 @@ export const AddRecipe = () => {
     ingredients: [],
     image: null,
   });
-  console.log(recipeData);
   interface imgPreviewProps {
     previewURL: string | null;
     isActive: boolean;
@@ -155,6 +154,7 @@ export const AddRecipe = () => {
     for (const key in newRecipe) {
       formData.append(key, newRecipe[key]);
     }
+    // send new recipe to db
     fetch("http://localhost:8080/recipes", {
       method: "POST",
       body: formData,

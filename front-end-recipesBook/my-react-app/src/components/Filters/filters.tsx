@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import Title from "../../UI/titles/title.tsx";
 import Button from "../../UI/Button/button.tsx";

@@ -26,6 +26,8 @@ export const Homepage = () => {
     difficulties: [],
     diets: [],
   });
+
+  // paginator logic
   const recipesPerPage = 10;
   let totalPages = Math.ceil(recipes.length / recipesPerPage);
   const startIndex = (recipesPage - 1) * recipesPerPage;
@@ -70,6 +72,8 @@ export const Homepage = () => {
         console.error(error);
       });
   }, []);
+
+  // function to  set filtered recipes
   const setFiltered = (recipes) => {
     setRecipes(recipes);
     recipesPage === 1 ? setRecipesPage(1) : setRecipesPage(1);
